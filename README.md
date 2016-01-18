@@ -7,7 +7,7 @@ Auto update root zones, check if all ok, bind restart.
 
 ## Prerequisites
 
-bind, dig, php > 5.6.x (with enable shell_exec function in php.ini)
+bind, php > 5.6.x (with enable shell_exec and exec function in php.ini)
 
 ## How Install Bind Manager
 
