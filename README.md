@@ -15,6 +15,8 @@ bind, php > 5.6.x (with enable shell_exec and exec function in php.ini)
  - ```cd /opt/```
  - ```git clone https://github.com/heximcz/bind-manager.git```
  - ```cd /opt/bind-manager/```
+ - ```git tag -l```
+ - ```git checkout tags/<last tag name>```
  - ```cp ./config.default.yml ./config.yml```
  - ```mkdir -p /var/log/bind-manager/```
  -  if need it, change your preferences in the config.yml file
