@@ -1,12 +1,17 @@
 <?php
 namespace Src\BindManager;
 
+use Src\Logger\OutputLogger;
+use Src\Logger\ILogger;
+
 class BindManager {
 	
 	private $config;
+	private $logger;
 	
-	public function __construct($config) {
+	public function __construct($config, $output) {
 		$this->config = $config;
+		$this->logger = new OutputLogger($output);
 	}
 	
 	public function updateBind() {
@@ -17,29 +22,32 @@ class BindManager {
 	}
 
 	public function restartBind() {
-		echo "INFO: Restart service.".PHP_EOL;
+		$this->logger->log("Restart service.");
 		$this->restartBindService();
 	}
 
 	private function restartBindService() {
-		echo "INFO: Use systemctl: ";
+		$message = "Use systemctl: ";
 		if ($this->config['system']['systemctl'] == 1) {
-			echo "OK".PHP_EOL;
+			$message .= "OK";
 			exec("systemctl restart ".$this->config['system']['bindservice']);
 		}
 		else {
-			echo "NO".PHP_EOL;
+			$message .= "NO!";
 			exec($this->config['system']['bind-restart']);
 		}
 		//wait for servis is full started
+		$this->logger->log($message);
 		sleep(2); //TODO: check over systemctl
 	}
 	
 	private function testDomainZone() {
-		echo "INFO: Test dns for domain: ".$this->config['test']['domain'].PHP_EOL;
+		$message =  "Test dns for domain: ".$this->config['test']['domain'];
+		$this->logger->log($message);
 		if ( !checkdnsrr($this->config['test']['domain'],"A") ) {
 			//get back old config file and restart bind
-			echo "ERROR: New root zone file is corrupted, revert to old config file.".PHP_EOL;
+			$message = "New root zone file is corrupted, revert to old config file.";
+		    $this->logger->log($message,ILogger::LEVEL_ERROR);
 			rename( $this->config['system']['rzfile'].".bak", $this->config['system']['rzfile']);
 			$this->restartBind();
 		}
@@ -47,10 +55,10 @@ class BindManager {
 	
 	private function getRootZone() {
 		// backup original root zone
-		echo "INFO: Backup root zones file: " . $this->config['system']['rzfile'].PHP_EOL;
-		rename($this->config['system']['rzfile'], $this->config['system']['rzfile'].".bak");
+		$this->logger->log("Backup root zones file: " . $this->config['system']['rzfile']);
+		copy($this->config['system']['rzfile'], $this->config['system']['rzfile'].".bak");
 		// get new zones file
-		echo "INFO: Get new root zones file from: " . $this->config['source']['url'].PHP_EOL;
+		$this->logger->log("Get new root zones file from: " . $this->config['source']['url']);
 		exec("wget -q " . $this->config['source']['url'] . " -O " . $this->config['system']['rzfile'].".new");
 		//file_put_contents($this->config['system']['rzfile'].".new", fopen($this->config['source']['url'], 'r'));
 		if ( filesize($this->config['system']['rzfile'].".new") ) {
@@ -58,7 +66,7 @@ class BindManager {
 			return true;
 		}
 		else { 
-			echo "ERROR: New zone file is empty, cancel operation.".PHP_EOL;
+		    $this->logger->log("New zone file is empty, cancel operation.",ILogger::LEVEL_ERROR);
 			unlink($this->config['system']['rzfile'].".new");
 			return false;
 		}

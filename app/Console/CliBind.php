@@ -7,6 +7,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Src\BindManager\BindManager;
 use Exception;
+use Src\Logger\OutputLogger;
 
 class CliBind extends Command
 {
@@ -43,8 +44,10 @@ class CliBind extends Command
 			throw new Exception("Only one option is enabled.");
 		}
 		else {
-			$bind = new BindManager($this->config);
-			echo "INFO: Start bind manager.".PHP_EOL;
+			$logger = new OutputLogger($output);
+			$bind = new BindManager($this->config, $output);
+			$logger->log("Start bind manager.");
+//			echo "INFO: Start bind manager.".PHP_EOL;
 			if ($input->getOption('update')) {
 				$bind->updateBind();
 			}
@@ -52,8 +55,10 @@ class CliBind extends Command
 				$bind->restartBind();
 			}
 			else 
-				echo "INFO: Nothing to do.".PHP_EOL;
-			echo "INFO: All done.".PHP_EOL;
+				$logger->log("Nothing to do.");
+//				echo "INFO: Nothing to do.".PHP_EOL;
+//			echo "INFO: All done.".PHP_EOL;
+			$logger->log("All done.");
 		}
 	}
 }

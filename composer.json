@@ -8,7 +8,8 @@
 			"App\\Console\\" : "app/Console/",
 			"App\\Config\\" : "app/Config/",
 			"Src\\Checks\\" : "src/Checks/",
-			"Src\\BindManager\\" : "src/BindManager/"
+			"Src\\BindManager\\" : "src/BindManager/",
+			"Src\\Logger\\" : "src/Logger/"
 		}
 	}
 }
