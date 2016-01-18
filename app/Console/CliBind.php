@@ -51,6 +51,7 @@ class CliBind extends Command
 			if ($input->getOption('restart')) {
 				$bind->restartBind();
 			}
+			echo "INFO: All done.".PHP_EOL;
 		}
 	}
 }

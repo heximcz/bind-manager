@@ -14,10 +14,10 @@ class BindManager {
 			$this->restartBindService();
 			$this->testDomainZone();
 		}
-		echo "INFO: All done.".PHP_EOL;
 	}
 
 	public function restartBind() {
+		echo "INFO: Restart service.".PHP_EOL;
 		$this->restartBindService();
 	}
 
