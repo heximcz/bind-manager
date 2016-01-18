@@ -31,7 +31,7 @@ class CliBind extends Command
 				'update db.root and reload bind with test'
 				)
 		->addOption(
-				'reload',
+				'restart',
 				'r',
 				InputOption::VALUE_NONE,
 				'reload bind with tests'
@@ -43,13 +43,13 @@ class CliBind extends Command
 			throw new Exception("Only one option is enabled.");
 		}
 		else {
+			$bind = new BindManager($this->config);
+			echo "INFO: Start bind manager.".PHP_EOL;
 			if ($input->getOption('update')) {
-				echo "update".PHP_EOL;
-				$update = new BindManager($this->config);
-				$update->updateBind();
+				$bind->updateBind();
 			}
-			if ($input->getOption('reload')) {
-				echo "reload".PHP_EOL;
+			if ($input->getOption('restart')) {
+				$bind->restartBind();
 			}
 		}
 	}

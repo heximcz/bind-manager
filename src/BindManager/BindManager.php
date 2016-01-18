@@ -10,35 +10,18 @@ class BindManager {
 	}
 	
 	public function updateBind() {
-/*
-    [system] => Array
-        (
-            [bind-restart] => /etc/init.d/bind9 restart
-            [systemctl] => 1
-            [bindservice] => bind9.service
-            [rzfile] => /etc/bind/db.root
-            [admin-email] => name@domain.com
-        )
-
-    [source] => Array
-        (
-            [url] => ftp://ftp.rs.internic.net/domain/root.zone
-        )
-
-    [test] => Array
-        (
-            [domain] => google.com
-        )
-
-*/
 		if ( $this->getRootZone() ) {
-			$this->restartBind();
+			$this->restartBindService();
 			$this->testDomainZone();
 		}
 		echo "INFO: All done.".PHP_EOL;
 	}
 
-	private function restartBind() {
+	public function restartBind() {
+		$this->restartBindService();
+	}
+
+	private function restartBindService() {
 		echo "INFO: Use systemctl: ";
 		if ($this->config['system']['systemctl'] == 1) {
 			echo "OK".PHP_EOL;
