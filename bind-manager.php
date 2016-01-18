@@ -8,7 +8,7 @@ require_once dirname(__FILE__).DIRECTORY_SEPARATOR.'vendor/autoload.php';
 try {
 	$myConfig = new GetYAMLConfig();
 	$config   = $myConfig->getConfigData();
-	$application = new Application("Bind Manager","0.0.1");
+	$application = new Application("Bind Manager","0.0.2");
 	$application->add(new CliBind($config));
 	$application->run();
 } catch (Exception $e) {
