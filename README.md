@@ -21,6 +21,12 @@ bind, php > 5.6.x (with enable shell_exec and exec function in php.ini)
  - ```mkdir -p /var/log/bind-manager/```
  -  if need it, change your preferences in the config.yml file
 
+## How to update Bind Manager
+
+ - ```git pull```
+ - ```git tag -l```
+ - ```git checkout tags/<last tag name of stable version>```
+
 ## Example Usage
 
 print help:
