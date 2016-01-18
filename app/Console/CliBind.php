@@ -39,7 +39,7 @@ class CliBind extends Command
 	}
 
 	protected function execute(InputInterface $input, OutputInterface $output) {
-		if ($input->getOption('update') && $input->getOption('reload')) {
+		if ($input->getOption('update') && $input->getOption('restart')) {
 			throw new Exception("Only one option is enabled.");
 		}
 		else {
