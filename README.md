@@ -25,6 +25,8 @@ print help:
 
 ```php ./bind-manager.php```
 
+```php ./bind-manager.php bind -h```
+
 ### Using via crontab
 
 add this lines to your /etc/crontab:
