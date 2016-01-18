@@ -48,9 +48,11 @@ class CliBind extends Command
 			if ($input->getOption('update')) {
 				$bind->updateBind();
 			}
-			if ($input->getOption('restart')) {
+			elseif ($input->getOption('restart')) {
 				$bind->restartBind();
 			}
+			else 
+				echo "INFO: Nothing to do.".PHP_EOL;
 			echo "INFO: All done.".PHP_EOL;
 		}
 	}
