@@ -28,22 +28,34 @@ class BindManager {
 
 	private function restartBindService() {
 		$message = "Use systemctl: ";
+		// systemctl
 		if ($this->config['system']['systemctl'] == 1) {
-			$message .= "OK";
+			$message .= "YES";
+			$this->logger->log($message);
 			exec("systemctl restart ".$this->config['system']['bindservice']);
+			// check for 5 times if bind service is running
+			for ( $i=0; $i<5; $i++ ) {
+				sleep(1);
+				if ( $this->testBindService() ) {
+					$lastState = true;
+					break;
+				}
+				else $lastState = false;
+			}
+			if (!$lastState)
+				$this->logger->log("BIND service not running !!!: ",ILogger::LEVEL_ERROR);
 		}
+		// old method
 		else {
 			$message .= "NO!";
+			$this->logger->log($message);
 			exec($this->config['system']['bind-restart']);
+			sleep(4);
 		}
-		//wait for servis is full started
-		$this->logger->log($message);
-		sleep(2); //TODO: check over systemctl
 	}
 	
 	private function testDomainZone() {
-		$message =  "Test dns for domain: ".$this->config['test']['domain'];
-		$this->logger->log($message);
+		$this->logger->log("Test dns for domain: ".$this->config['test']['domain']);
 		if ( !checkdnsrr($this->config['test']['domain'],"A") ) {
 			//get back old config file and restart bind
 			$message = "New root zone file is corrupted, revert to old config file.";
@@ -51,6 +63,16 @@ class BindManager {
 			rename( $this->config['system']['rzfile'].".bak", $this->config['system']['rzfile']);
 			$this->restartBind();
 		}
+	}
+	
+	private function testBindService() {
+		$substate = shell_exec( "systemctl show ".$this->config['system']['bindservice']." -p SubState" );
+		$result   = shell_exec( "systemctl show ".$this->config['system']['bindservice']." -p Result" );
+		$statusA  = explode( "=", trim($substate) );
+		$statusB  = explode( "=", trim($result) );
+		
+		if (!$statusA[1]=="running" || !$statusB[1]=="success") return false;
+		else return true;
 	}
 	
 	private function getRootZone() {
