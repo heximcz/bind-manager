@@ -22,8 +22,9 @@ class BindManager {
 	}
 
 	public function restartBind() {
-		$this->logger->log("Restart service.");
+		$this->logger->log("Restart service only.");
 		$this->restartBindService();
+		$this->testDomainZone();
 	}
 
 	private function restartBindService() {
@@ -57,12 +58,18 @@ class BindManager {
 	private function testDomainZone() {
 		$this->logger->log("Test dns for domain: ".$this->config['test']['domain']);
 		if ( !checkdnsrr($this->config['test']['domain'],"A") ) {
-			//get back old config file and restart bind
-			$message = "New root zone file is corrupted, revert to old config file.";
-		    $this->logger->log($message,ILogger::LEVEL_ERROR);
-			rename( $this->config['system']['rzfile'].".bak", $this->config['system']['rzfile']);
-			$this->restartBind();
+			// exist backup file ?
+			if ( file_exists ($this->config['system']['rzfile'].".bak") ) {
+				//get back old zone file and restart bind
+			    $this->logger->log("New zone file is bad, revert to old zones from backup!",ILogger::LEVEL_ERROR);
+				copy( $this->config['system']['rzfile'].".bak", $this->config['system']['rzfile']);
+				$this->restartBind();
+			}
+			else
+				$this->logger->log("Backup zone file is not exist!",ILogger::LEVEL_ERROR);
 		}
+		else 
+			$this->logger->log("Test passed.");
 	}
 	
 	private function testBindService() {
