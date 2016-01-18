@@ -9,7 +9,7 @@ Auto update root zones, check if all ok, bind restart.
 
 bind, php > 5.6.x (with enable shell_exec and exec function in php.ini)
 
-## How Install Bind Manager
+## How to install Bind Manager
 
  - Connet via SSH to your web server
  - ```cd /opt/```
