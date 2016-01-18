@@ -32,4 +32,5 @@ print help:
 add this lines to your /etc/crontab:
 
 ```0 0  * * *   root /usr/local/sbin/php /opt/bind-manager/bind-manager.php bind --restart >> /var/log/bind-manager/bind-manager.log```
+
 ```10 0  * * 6   root /usr/local/sbin/php /opt/bind-manager/bind-manager.php bind --update >> /var/log/bind-manager/bind-manager.log```
