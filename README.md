@@ -27,6 +27,8 @@ bind, php > 5.6.x (with enable shell_exec and exec function in php.ini)
  - ```git pull https://github.com/heximcz/bind-manager.git```
  - ```git tag -l```
  - ```git checkout tags/<last tag name of stable version>```
+ - How to finding the tag is that checked out? Simply.
+ - ```git describe --tags```
 
 ## Example Usage
 
@@ -36,7 +38,7 @@ print help:
 
 ```php ./bind-manager.php bind -h```
 
-### Using via crontab
+## Using via crontab
 
 add this lines to your /etc/crontab:
 
