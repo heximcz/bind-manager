@@ -8,6 +8,9 @@ class BindManager {
 	
 	private $config;
 	private $logger;
+	private $user;
+	private $group;
+	private $permission;
 	
 	public function __construct($config, $output) {
 		$this->config = $config;
@@ -83,15 +86,18 @@ class BindManager {
 	}
 	
 	private function getRootZone() {
+		// get original file user:group and permissions
+		$this->getUserGroupPerm();
 		// backup original root zone
 		$this->logger->log("Backup root zones file: " . $this->config['system']['rzfile']);
 		copy($this->config['system']['rzfile'], $this->config['system']['rzfile'].".bak");
 		// get new zones file
 		$this->logger->log("Get new root zones file from: " . $this->config['source']['url']);
 		exec("wget -q " . $this->config['source']['url'] . " -O " . $this->config['system']['rzfile'].".new");
-		//file_put_contents($this->config['system']['rzfile'].".new", fopen($this->config['source']['url'], 'r'));
 		if ( filesize($this->config['system']['rzfile'].".new") ) {
 			rename( $this->config['system']['rzfile'].".new", $this->config['system']['rzfile']);
+			// set original user:group and permissions
+			$this->setUserGroupPerm();
 			return true;
 		}
 		else { 
@@ -100,4 +106,23 @@ class BindManager {
 			return false;
 		}
 	}
+	
+	private function getUserGroupPerm() {
+		if (! $this->group = filegroup($this->config['system']['rzfile']) )
+			$this->logger->log("Get group of file: " . $this->config['system']['rzfile'], ILogger::LEVEL_ERROR);
+		if (! $this->user = fileowner($this->config['system']['rzfile']) )
+			$this->logger->log("Get user of file: " . $this->config['system']['rzfile'], ILogger::LEVEL_ERROR);
+		if (! $this->permission = fileperms($this->config['system']['rzfile']) )
+			$this->logger->log("Get permission of file: " . $this->config['system']['rzfile'], ILogger::LEVEL_ERROR);
+	}
+	
+	private function setUserGroupPerm() {
+		if (!chown ( $this->config['system']['rzfile'], $this->user ) )
+			$this->logger->log("Change user of file: " . $this->config['system']['rzfile'], ILogger::LEVEL_ERROR);
+		if (!chgrp ( $this->config['system']['rzfile'], $this->group ) )
+			$this->logger->log("Change group of file: " . $this->config['system']['rzfile'], ILogger::LEVEL_ERROR);
+		if (!chmod( $this->config['system']['rzfile'], $this->permission ) )
+			$this->logger->log("Change permission of file: " . $this->config['system']['rzfile'], ILogger::LEVEL_ERROR);
+	}
+	
 }
