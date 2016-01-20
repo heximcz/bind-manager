@@ -24,7 +24,7 @@ bind, wget, php > 5.6.x (with enable shell_exec and exec function in php.ini)
 ## How to update Bind Manager
 
  - ```cd /opt/bind-manager/```
- - ```git pull https://github.com/heximcz/bind-manager.git```
+ - ```git pull```
  - ```git tag -l```
  - ```git checkout tags/<last tag name of stable version>```
  - How to finding the tag is that checked out? Simply.
