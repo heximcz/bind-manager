@@ -82,8 +82,7 @@ class BindManager {
 		$result   = shell_exec( "systemctl show ".$this->config['system']['bindservice']." -p Result" );
 		$statusA  = explode( "=", trim($substate) );
 		$statusB  = explode( "=", trim($result) );
-		
-		if (!$statusA[1]=="running" || !$statusB[1]=="success") return false;
+		if ( $statusA[1]!="running" || $statusB[1]!="success") return false;
 		else return true;
 	}
 	
