@@ -9,6 +9,7 @@ class OutputLogger extends AbstractMailLogger implements ILogger{
 	private $output;
 	
 	public function __construct(OutputInterface $output){
+		parent::__construct();
 		$this->output = $output;
 	}
 	
