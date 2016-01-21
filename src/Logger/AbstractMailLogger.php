@@ -7,17 +7,14 @@ use PHPMailer;
 abstract class AbstractMailLogger {
 
 	protected $mailBody; 
-	abstract public function setMailBody($message, $level);
+	abstract protected function setMailBody($message, $level);
 
 	public function __construct() {
 		$this->mailBody = false;
 	}
 
 	public function isMail() {
-		if ($this->mailBody)
-			return true;
-		else
-			return false;
+		return ( $this->mailBody ? true : false );
 	}
 
 	public function send($from, $to) {
@@ -31,10 +28,7 @@ abstract class AbstractMailLogger {
 		$mail->Subject = 'Error on DNS Resolver -> ' . $host;
 		$mail->Body = str_replace ( "\n", '<br />', $this->mailBody );
 		$mail->AltBody = $this->mailBody;
-		if (! $mail->send ())
-			return false;
-		else
-			return true;
-	}
+		return ( $mail->send() ? true : false );
+		}
 }
 

@@ -5,6 +5,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Src\Logger\AbstractMailLogger;
 
 class OutputLogger extends AbstractMailLogger implements ILogger{
+
 	private $output;
 	
 	public function __construct(OutputInterface $output){
@@ -19,7 +20,7 @@ class OutputLogger extends AbstractMailLogger implements ILogger{
 		}
 	}
 	
-	public function setMailBody($message, $level) {
+	protected function setMailBody($message, $level) {
 		$this->mailBody .= sprintf("%1s [%2s]: %3s\n", 
 			$level, date("Y-d-m H:i:s"), $message);
 	}
