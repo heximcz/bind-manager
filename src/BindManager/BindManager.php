@@ -21,6 +21,7 @@ class BindManager {
 		if ( $this->getRootZone() ) {
 			$this->restartBindService();
 			$this->testDomainZone();
+			$this->checkErrorEmail();
 		}
 	}
 
@@ -28,6 +29,7 @@ class BindManager {
 		$this->logger->log("Restart service only.");
 		$this->restartBindService();
 		$this->testDomainZone();
+		$this->checkErrorEmail();
 	}
 
 	private function restartBindService() {
@@ -47,7 +49,7 @@ class BindManager {
 				else $lastState = false;
 			}
 			if (!$lastState)
-				$this->logger->log("BIND service not running !!!: ",ILogger::LEVEL_ERROR);
+				$this->logger->log("BIND service not running !!!",ILogger::LEVEL_ERROR);
 		}
 		// old method
 		else {
@@ -108,11 +110,11 @@ class BindManager {
 	}
 	
 	private function getUserGroupPerm() {
-		if (! $this->group = filegroup($this->config['system']['rzfile']) )
+		if ( ($this->group = filegroup($this->config['system']['rzfile'])) === false )
 			$this->logger->log("Get group of file: " . $this->config['system']['rzfile'], ILogger::LEVEL_ERROR);
-		if (! $this->user = fileowner($this->config['system']['rzfile']) )
+		if ( ($this->user = fileowner($this->config['system']['rzfile'])) === false )
 			$this->logger->log("Get user of file: " . $this->config['system']['rzfile'], ILogger::LEVEL_ERROR);
-		if (! $this->permission = fileperms($this->config['system']['rzfile']) )
+		if ( ($this->permission = fileperms($this->config['system']['rzfile'])) === false )
 			$this->logger->log("Get permission of file: " . $this->config['system']['rzfile'], ILogger::LEVEL_ERROR);
 	}
 	
@@ -123,6 +125,15 @@ class BindManager {
 			$this->logger->log("Change group of file: " . $this->config['system']['rzfile'], ILogger::LEVEL_ERROR);
 		if (!chmod( $this->config['system']['rzfile'], $this->permission ) )
 			$this->logger->log("Change permission of file: " . $this->config['system']['rzfile'], ILogger::LEVEL_ERROR);
+	}
+	
+	private function checkErrorEmail() {
+		if ($this->config['mail']['sendmail']==1 && $this->logger->isMail()) {
+			if ($this->logger->send($this->config['mail']['email-from'], $this->config['mail']['email-from']))
+				$this->logger->log("Email message with errors has been send to email: " . $this->config['mail']['email-from']);
+			else
+				$this->logger->log("Email message with errors has not been send !!! ",ILogger::LEVEL_ERROR);
+		}
 	}
 	
 }
