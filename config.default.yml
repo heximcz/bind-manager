@@ -11,9 +11,6 @@ system:
     # where is file with root zones
     rzfile: "/etc/bind/db.root"
 
-    # admin email for any warns and errors - no use in this version
-    admin-email:  "name@domain.com"
-
 # url source for db.root
 source:
     url:    "ftp://ftp.rs.internic.net/domain/root.zone"
@@ -21,4 +18,12 @@ source:
 # test domain (for dig test if bind config is ok)
 test:
     domain: "google.com"
-    
+
+# Send errors to email
+mail:
+    # 0=false 1=true, if true, script will be send errors to email
+    sendmail: "0"
+    # from:
+    email-from: "from@email.tld"
+    # to:
+    email-to: "to@email.tld"
