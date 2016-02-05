@@ -13,7 +13,7 @@
 			"Src\\Logger\\" : "src/Logger/"
 		}
 	},
-	"name" : "heximcz/bind-manager",
+	"name" : "bind-manager/bind-manager",
 	"description" : "Periodical update of the root zone for Bind DNS resolver.",
 	"authors" : [{
 			"name" : "Lubomir Spacek",
