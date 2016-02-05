@@ -47,7 +47,6 @@ class CliBind extends Command
 			$logger = new OutputLogger($output);
 			$bind = new BindManager($this->config, $output);
 			$logger->log("Start bind manager.");
-//			echo "INFO: Start bind manager.".PHP_EOL;
 			if ($input->getOption('update')) {
 				$bind->updateBind();
 			}
@@ -56,8 +55,6 @@ class CliBind extends Command
 			}
 			else 
 				$logger->log("Nothing to do.");
-//				echo "INFO: Nothing to do.".PHP_EOL;
-//			echo "INFO: All done.".PHP_EOL;
 			$logger->log("All done.");
 		}
 	}

@@ -13,12 +13,11 @@
 			"Src\\Logger\\" : "src/Logger/"
 		}
 	},
-	"name" : "bind-manager/bind-manager",
+	"name" : "bind-manager",
 	"description" : "Periodical update of the root zone for Bind DNS resolver.",
 	"authors" : [{
 			"name" : "Lubomir Spacek",
-			"homepage" : "https://best-hosting.cz",
-			"email" : "admin@best-net.cz"
+			"homepage" : "https://best-hosting.cz"
 		}
 	],
 	"license" : "MIT",
@@ -29,5 +28,6 @@
 		"zone",
 		"update",
 		"upgrade"
-	]
+	],
+	"homepage" : "https://github.com/heximcz/bind-manager"
 }
