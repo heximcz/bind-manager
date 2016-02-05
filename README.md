@@ -3,7 +3,7 @@
 
 ## Overview
 
-Auto update root zones, check if all ok, bind restart.
+Periodical update of the root zone for Bind DNS resolver
 
 ## Prerequisites
 

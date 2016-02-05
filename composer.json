@@ -2,7 +2,7 @@
 	"require" : {
 		"symfony/Console" : "^3.0",
 		"symfony/yaml" : "^3.0",
-		"phpmailer/phpmailer": "~5.2"
+		"phpmailer/phpmailer" : "~5.2"
 	},
 	"autoload" : {
 		"psr-4" : {
@@ -12,5 +12,22 @@
 			"Src\\BindManager\\" : "src/BindManager/",
 			"Src\\Logger\\" : "src/Logger/"
 		}
-	}
+	},
+	"name" : "heximcz/bind-manager",
+	"description" : "Periodical update of the root zone for Bind DNS resolver.",
+	"authors" : [{
+			"name" : "Lubomir Spacek",
+			"homepage" : "https://best-hosting.cz",
+			"email" : "admin@best-net.cz"
+		}
+	],
+	"license" : "MIT",
+	"keywords" : [
+		"bind",
+		"resolver",
+		"root",
+		"zone",
+		"update",
+		"upgrade"
+	]
 }
