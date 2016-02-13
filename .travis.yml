@@ -14,7 +14,7 @@ services:
     - mysql
 
 script: 
-    - sudo phpunit --configuration tests/phpunit.xml --coverage-clover=coverage.xml
+    - phpunit --configuration tests/phpunit.xml --coverage-clover=coverage.xml
 
 before_script:
     - travis_retry composer self-update
