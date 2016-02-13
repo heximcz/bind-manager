@@ -3,32 +3,28 @@ language:
 
 php:
     - 5.6
-    - 7.0
-    - hhvm
+#    - 7.0
+#    - hhvm
     
-matrix:
-  allow_failures:
-    - php: hhvm
+#matrix:
+#  allow_failures:
+#    - php: hhvm
 
 services:
     - mysql
 
 script: 
-    - phpunit --configuration tests/phpunit.xml --coverage-clover=coverage.xml
+    - sudo phpunit --configuration tests/phpunit.xml --coverage-clover=coverage.xml
 
 before_script:
     - travis_retry composer self-update
+    - sudo composer global require "phpunit/phpunit=5.0.*"
     - cp ./tests/config.travis.yml ./config.yml
-    - sudo chmod 777 /etc/bind
-    - sudo touch /etc/bind/db.root
-    - sudo chmod 666 /etc/bind/ -R
 
 before_install:
     - pip install --user codecov
     - sudo apt-get -qq update
     - sudo apt-get install -y bind9
-  
+
 after_success:
     - codecov
-    
-  
