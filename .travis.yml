@@ -14,7 +14,7 @@ services:
     - bind9
 
 script: 
-    - sudo phpunit --configuration tests/phpunit.xml --coverage-clover=coverage.xml
+    - travis_retry phpunit --configuration tests/phpunit.xml --coverage-clover=coverage.xml
 
 before_script:
     - travis_retry composer self-update
@@ -22,9 +22,9 @@ before_script:
     - cp ./tests/config.travis.yml ./config.yml
 
 before_install:
-    - pip install --user codecov
-    - sudo apt-get -qq update
-    - sudo apt-get install -y bind9
+#    - pip install --user codecov
+#    - sudo apt-get -qq update
+#    - sudo apt-get install -y bind9
 
 after_success:
-    - codecov
+#    - codecov
