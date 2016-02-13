@@ -20,6 +20,7 @@ before_script:
     - travis_retry composer self-update
     - cp ./tests/config.travis.yml ./config.yml
     - sudo chmod 777 /etc/bind
+    - sudo touch /etc/bind/db.root
     - sudo chmod 666 /etc/bind/ -R
 
 before_install:
