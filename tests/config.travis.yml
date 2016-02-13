@@ -1,6 +1,6 @@
 system:
     # command for stop/start/status of bind
-    bind-restart: "sudo /etc/init.d/bind9 restart"
+    bind-restart: "/etc/init.d/bind9 restart"
 
     # SYSTEMCTL (etc. systemctl restart bind9.service)
     # use systemctl 0=false or 1=true - OPTIONAL (if true script not use 'bind-restart')
