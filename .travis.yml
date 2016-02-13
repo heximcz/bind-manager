@@ -14,12 +14,13 @@ services:
     - mysql
 
 script: 
-    - sudo -E su $USER -c 'phpunit --configuration tests/phpunit.xml --coverage-clover=coverage.xml;'
+    - phpunit --configuration tests/phpunit.xml --coverage-clover=coverage.xml
 
 before_script:
     - travis_retry composer self-update
     - cp ./tests/config.travis.yml ./config.yml
-    - sudo usermod -g root $USER
+    - sudo chmod 777 /etc/bind9
+    - sudo chmod 666 /etc/bind9/ -R
 
 before_install:
     - pip install --user codecov
