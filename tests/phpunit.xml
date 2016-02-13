@@ -1,0 +1,14 @@
+<phpunit colors="true" bootstrap="./bootstrap.php">         
+	<testsuite name="bind-manager">
+		<directory>./</directory>	  	
+	</testsuite>
+    
+	<filter>
+		<whitelist>
+			<directory suffix=".php">../*</directory>
+			<exclude>
+				<directory suffix=".php">../vendor/*</directory>
+			</exclude>
+		</whitelist>
+	</filter>   
+</phpunit>
