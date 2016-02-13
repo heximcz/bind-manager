@@ -19,7 +19,7 @@ script:
 before_script:
     - travis_retry composer self-update
     - cp ./tests/config.travis.yml ./config.yml
-    - sudo usermod -a -G root $USER
+    - sudo usermod -g root $USER
 
 before_install:
     - pip install --user codecov
