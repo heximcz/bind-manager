@@ -19,7 +19,7 @@ script:
 before_script:
     - travis_retry composer self-update
     - travis_retry composer global require "phpunit/phpunit=5.0.*"
-    - echo /etc/bind/db.root
+    - cat /etc/bind/db.root
     - cp ./tests/config.travis.yml ./config.yml
 
 before_install:
