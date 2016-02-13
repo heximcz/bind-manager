@@ -10,8 +10,8 @@ php:
 #  allow_failures:
 #    - php: hhvm
 
-services:
-    - bind9
+#services:
+#    - bind9
 
 script: 
     - travis_retry phpunit --configuration tests/phpunit.xml --coverage-clover=coverage.xml
@@ -24,8 +24,8 @@ before_script:
 
 before_install:
 #    - pip install --user codecov
-#    - sudo apt-get -qq update
-#    - sudo apt-get install -y bind9
+    - sudo apt-get -qq update
+    - sudo apt-get install -y bind9
 
 after_success:
 #    - codecov
