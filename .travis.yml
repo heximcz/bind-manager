@@ -14,8 +14,7 @@ php:
 #    - bind9
 
 script: 
-    - sudo -i
-    - travis_retry phpunit --configuration tests/phpunit.xml --coverage-clover=coverage.xml
+    - sudo -i && travis_retry phpunit --configuration tests/phpunit.xml --coverage-clover=coverage.xml
 
 before_script:
     - travis_retry composer self-update
