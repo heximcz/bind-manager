@@ -31,6 +31,7 @@ before_install:
 #    - pip install --user codecov
     - sudo apt-get -qq update
     - sudo apt-get install -y bind9
+    - sudo apt-get install php5-xdebug
 
 after_success:
 #    - codecov
