@@ -11,7 +11,7 @@ php:
 #    - php: hhvm
 
 script: 
-    - sudo -E su $USER -c 'phpunit --configuration tests/phpunit.xml --coverage-clover=coverage.xml;'
+    - sudo -E su $USER -c 'php -v; phpunit --configuration tests/phpunit.xml --coverage-clover=coverage.xml;'
 
 before_script:
     - travis_retry composer self-update
