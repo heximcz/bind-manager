@@ -23,12 +23,12 @@ before_script:
     - chmod 777 phpunit.phar
     - sudo mv phpunit.phar /usr/local/bin/phpunit
     - phpunit --version
+    - sudo echo "date.timezone = Europe/Prague" >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
 
 before_install:
 #    - pip install --user codecov
     - sudo apt-get -qq update
     - sudo apt-get install -y bind9
-    - sudo apt-get install php5-xdebug
 
 after_success:
 #    - codecov
