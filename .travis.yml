@@ -10,9 +10,6 @@ php:
 #  allow_failures:
 #    - php: hhvm
 
-#services:
-#    - bind9
-
 script: 
     - sudo -E su $USER -c 'phpunit --configuration tests/phpunit.xml --coverage-clover=coverage.xml;'
 
