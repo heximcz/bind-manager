@@ -20,6 +20,7 @@ before_script:
     - travis_retry composer self-update
     - travis_retry composer global require "phpunit/phpunit=5.0.*"
     - cat /etc/bind/db.root
+    - whereis phpunit
     - sudo chmod 777 /etc/bind
     - sudo chmod 666 /etc/bind/db.root
     - cp ./tests/config.travis.yml ./config.yml
