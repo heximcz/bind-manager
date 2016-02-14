@@ -11,7 +11,7 @@ php:
 #    - php: hhvm
 
 script: 
-    - sudo -E su $USER -c 'php -v; phpunit --configuration tests/phpunit.xml --coverage-clover=coverage.xml;'
+    - phpunit --configuration tests/phpunit.xml --coverage-clover=coverage.xml
 
 before_script:
     - travis_retry composer self-update
@@ -23,7 +23,7 @@ before_script:
     - chmod 777 phpunit.phar
     - sudo mv phpunit.phar /usr/local/bin/phpunit
     - phpunit --version
-    - sudo echo "date.timezone = Europe/Prague" >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
+#    - sudo echo "date.timezone = Europe/Prague" >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
 
 before_install:
 #    - pip install --user codecov
