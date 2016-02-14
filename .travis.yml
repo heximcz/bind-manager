@@ -18,13 +18,14 @@ script:
 
 before_script:
     - travis_retry composer self-update
-    - travis_retry composer global require "phpunit/phpunit=5.0.*"
-    - cat /etc/bind/db.root
-    - whereis phpunit
     - sudo chmod 777 /etc/bind
     - sudo chmod 666 /etc/bind/db.root
     - cp ./tests/config.travis.yml ./config.yml
     - sudo usermod -a -G root $USER
+    - wget https://phar.phpunit.de/phpunit.phar
+    - chmod 777 phpunit.phar
+    - sudo mv phpunit.phar /usr/local/bin/phpunit
+    - phpunit --version
 
 before_install:
 #    - pip install --user codecov
