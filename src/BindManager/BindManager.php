@@ -40,7 +40,7 @@ class BindManager {
 	}
 
 	private function restartBindService() {
-		$message = "Use systemctl: ";
+		$message = "Restart BIND via systemctl: ";
 		// systemctl
 		if ($this->config['system']['systemctl'] == 1) {
 			$message .= "YES";
@@ -74,12 +74,12 @@ class BindManager {
 			    $this->logger->log("New zone file is bad, revert to old zones from backup!",ILogger::LEVEL_ERROR);
 				copy( $this->config['system']['rzfile'].".bak", $this->config['system']['rzfile']);
 				$this->restartBind();
+				return;
 			}
-			else
-				$this->logger->log("Backup zone file is not exist!",ILogger::LEVEL_ERROR);
+			$this->logger->log("Backup zone file is not exist!",ILogger::LEVEL_ERROR);
+			return;
 		}
-		else 
-			$this->logger->log("Test passed.");
+		$this->logger->log("Test passed.");
 	}
 	
 	private function testBindService() {
@@ -87,8 +87,9 @@ class BindManager {
 		$result   = shell_exec( "systemctl show ".$this->config['system']['bindservice']." -p Result" );
 		$statusA  = explode( "=", trim($substate) );
 		$statusB  = explode( "=", trim($result) );
-		if ( $statusA[1]!="running" || $statusB[1]!="success") return false;
-		else return true;
+		if ( $statusA[1]!="running" || $statusB[1]!="success") 
+			return false;
+		return true;
 	}
 	
 	private function getRootZone() {
@@ -106,11 +107,9 @@ class BindManager {
 			$this->setUserGroupPerm();
 			return true;
 		}
-		else { 
-		    $this->logger->log("New zone file is empty, cancel operation.",ILogger::LEVEL_ERROR);
-			unlink($this->config['system']['rzfile'].".new");
-			return false;
-		}
+	    $this->logger->log("New zone file is empty, cancel operation.",ILogger::LEVEL_ERROR);
+		unlink($this->config['system']['rzfile'].".new");
+		return false;
 	}
 	
 	private function getUserGroupPerm() {
@@ -133,10 +132,11 @@ class BindManager {
 	
 	private function checkErrorEmail() {
 		if ($this->config['mail']['sendmail']==1 && $this->logger->isMail()) {
-			if ($this->logger->send($this->config['mail']['email-from'], $this->config['mail']['email-from']))
+			if ($this->logger->send($this->config['mail']['email-from'], $this->config['mail']['email-from'])) {
 				$this->logger->log("Email message with errors has been send to email: " . $this->config['mail']['email-from']);
-			else
-				$this->logger->log("Email message with errors has not been send !!! ",ILogger::LEVEL_ERROR);
+				return;
+			}
+			$this->logger->log("Email message with errors has not been send !!! ",ILogger::LEVEL_ERROR);
 		}
 	}
 	
