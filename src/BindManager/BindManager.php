@@ -4,6 +4,13 @@ namespace Src\BindManager;
 use Src\Logger\OutputLogger;
 use Src\Logger\ILogger;
 
+/*
+ * TODO:
+ * Better check input params from config file
+ * 1. check if bindservice: (systemctl) exist in the system - if systemctl: = 1
+ * 2. check if bind-restart: path exist - if systemctl: != 1
+ */
+
 class BindManager {
 	
 	private $config;
@@ -42,22 +49,20 @@ class BindManager {
 			// check for 5 times if bind service is running
 			for ( $i=0; $i<5; $i++ ) {
 				sleep(1);
+				$lastState = false;
 				if ( $this->testBindService() ) {
 					$lastState = true;
 					break;
 				}
-				else $lastState = false;
 			}
 			if (!$lastState)
 				$this->logger->log("BIND service not running !!!",ILogger::LEVEL_ERROR);
+			return;
 		}
-		// old method
-		else {
-			$message .= "NO!";
-			$this->logger->log($message);
-			exec($this->config['system']['bind-restart']);
-			sleep(4);
-		}
+		$message .= "NO";
+		$this->logger->log($message);
+		exec($this->config['system']['bind-restart']);
+		sleep(4);
 	}
 	
 	private function testDomainZone() {
