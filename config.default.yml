@@ -11,6 +11,10 @@ system:
     # where is file with root zones
     rzfile: "/etc/bind/db.root"
 
+    # bind statistics url
+    # howto: https://ftp.isc.org/isc/bind9/9.10.4b2/doc/arm/Bv9ARM.ch06.html#statschannels
+    statsurl: "127.0.0.1:8053/xml/v2"
+
 # url source for db.root
 source:
     url:    "ftp://ftp.rs.internic.net/domain/root.zone"
