@@ -6,6 +6,11 @@ use Src\Logger\ILogger;
 
 /*
  * TODO:
+ * prepare stats for monitoring (zabbix, cacti) / parse stats (/var/cache/bind/named.stats)
+ * generate by: rndc stats
+ * 
+ * 
+ * TODO:
  * Better check input params from config file
  * 1. check if bindservice: (systemctl) exist in the system - if systemctl: = 1
  * 2. check if bind-restart: path exist - if systemctl: != 1
