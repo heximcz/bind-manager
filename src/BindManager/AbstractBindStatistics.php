@@ -182,6 +182,8 @@ abstract class AbstractBindStatistics {
 		$sfs = new Filesystem();
 		// change '!' to 'neg-'
 		$name = str_replace("!","neg-",$name);
+		// change '#' to 'hash-'
+		$name = str_replace("#","hash-",$name);
 		// prepare filename
 		$filename = strtolower($prefix.'-'.$name);
 		if (! $sfs->exists( $this->config['system']['statsdir'] ))
