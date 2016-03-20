@@ -38,7 +38,7 @@ print help:
 
 ```php ./bind-manager.php```
 
-```~~php ./bind-manager.php bind -h~~```
+* ~~php ./bind-manager.php bind -h~~
 
 ```php ./bind-manager.php bind:sys -h```
 
@@ -46,9 +46,9 @@ print help:
 
 add this lines to your /etc/crontab:
 
-```~~0 0  * * *   root /usr/bin/php /opt/bind-manager/bind-manager.php bind --restart >> /var/log/bind-manager/bind-manager.log~~```
+* ~~0 0  * * *   root /usr/bin/php /opt/bind-manager/bind-manager.php bind --restart >> /var/log/bind-manager/bind-manager.log~~
 
-```~~10 0  * * 6   root /usr/bin/php /opt/bind-manager/bind-manager.php bind --update >> /var/log/bind-manager/bind-manager.log~~```
+* ~~10 0  * * 6   root /usr/bin/php /opt/bind-manager/bind-manager.php bind --update >> /var/log/bind-manager/bind-manager.log~~
 
 ```10 0  * * 6   root /usr/bin/php /opt/bind-manager/bind-manager.php bind:sys update >> /var/log/bind-manager/bind-manager.log```
 
