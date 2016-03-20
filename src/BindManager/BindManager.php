@@ -2,9 +2,7 @@
 namespace Src\BindManager;
 
 use Src\Logger\OutputLogger;
-
-//use Src\Logger\ILogger;
-
+use Exception;
 /*
  * TODO:
  * Better check input params from config file
@@ -34,12 +32,11 @@ class BindManager extends AbstractBindManager implements IBindManager {
 	}
 	
 	public function createBindStatistics() {
-		if ( $this->getBindStatisticsXml() ) {
-			$this->logger->log("Create statistics files.");
-			$this->parseXmlStats();
-			return;
-		}
-		
+		if (! $this->getBindStatisticsXml() )
+			throw new Exception( 'Cannot get bind statistics from:' . $this->config['system']['statsurl'] );
+		$this->logger->log("Create statistics.");
+		$this->parseXmlStats();
+		$this->logger->log("Done.");
 	}
 
 }
