@@ -60,7 +60,7 @@ print help:
 
 ```php ./bind-manager.php```
 
-* ~~php ./bind-manager.php bind -h~~
+or
 
 ``` shell
 user@server:/opt/bind-manager# php ./bind-manager.php bind:sys -h
@@ -78,7 +78,7 @@ Options:
       --ansi            Force ANSI output
       --no-ansi         Disable ANSI output
   -n, --no-interaction  Do not ask any interactive question
-  -v|vv|vvv, --verbose  Increase the verbosity of messages: 1 for normal output, 2 for more verbose output and 3 for debug
+  -v|vv|vvv, --verbose  Increase the verbosity of messages: 1 ...
 
 Help:
  Update db.root, checks and reload actions.
@@ -92,13 +92,9 @@ Help:
 ```php ./bind-manager.php bind:sys statistics```
 
 
-## Using via crontab
+## Example using via crontab
 
 add this lines to your /etc/crontab:
-
-* ~~0 0  * * *   root /usr/bin/php /opt/bind-manager/bind-manager.php bind --restart >> /var/log/bind-manager/bind-manager.log~~
-
-* ~~10 0  * * 6   root /usr/bin/php /opt/bind-manager/bind-manager.php bind --update >> /var/log/bind-manager/bind-manager.log~~
 
 ```10 0  * * 6   root /usr/bin/php /opt/bind-manager/bind-manager.php bind:sys update >> /var/log/bind-manager/bind-manager.log```
 
