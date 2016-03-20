@@ -21,7 +21,7 @@ bind, wget, php > 5.6.x (with enable shell_exec and exec function in php.ini)
  - ```git checkout tags/<last tag name of stable version>```
  - ```cp ./config.default.yml ./config.yml```
  - ```mkdir -p /var/log/bind-manager/```
- -  if need it, change your preferences in the config.yml file
+ -  **change your preferences in the config.yml file**
 
 ## How to update Bind Manager
 
@@ -34,10 +34,10 @@ bind, wget, php > 5.6.x (with enable shell_exec and exec function in php.ini)
 
 ## Zabbix statistics
 
-* Allow statistics in named.conf
+* Allow statistics in named.conf [Bind manual](https://ftp.isc.org/isc/bind9/9.10.4b2/doc/arm/Bv9ARM.ch06.html#statschannels)
 
 ```
-# [Bind manual](https://ftp.isc.org/isc/bind9/9.10.4b2/doc/arm/Bv9ARM.ch06.html#statschannels)
+# Allow statistics
 statistics-channels {
    inet 127.0.0.1 port 8053;
 };
@@ -52,7 +52,7 @@ cp /opt/bind-manager/zabbix/bind-resolver.conf /etc/zabbix/zabbix_agentd.d/
 ```
 
 * Download the Bind xml template from github [bind template](https://github.com/heximcz/bind-manager/blob/master/zabbix/zabbix_bind_template.xml)
-* Import template to your Zabbix monitoring 
+* Import template to your Zabbix monitoring
 
 ## Example Usage
 
