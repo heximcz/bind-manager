@@ -82,7 +82,7 @@ abstract class AbstractBindStatistics {
 			// Socket I/O Statistics
 			$this->parseSimpleValuesV3( $this->xml->server->counters, 'sockstat', 'sockstat' );
 			// Cache DB RRsets for View _default
-			$this->parseDefaultViewsV3( $this->xml->views->view->cache, 'default-cache-rrsets', 'rrset' );
+			$this->parseDefaultViewsCacheV3( $this->xml->views->view->cache, 'default-cache-rrsets' );
 			// Outgoing Queries for View _default
 			$this->parseDefaultViewsV3( $this->xml->views->view, 'default-queries-out', 'resqtype' );
 		}
@@ -139,7 +139,7 @@ abstract class AbstractBindStatistics {
 	}
 
 	/**
-	 * Parse xml v2.x - '_default' views
+	 * Parse xml v3.x - '_default' views
 	 * @param SimpleXMLElement $xml
 	 * @param string $filePrefix
 	 * @param string $name
@@ -152,6 +152,21 @@ abstract class AbstractBindStatistics {
 						foreach ( $type as $dest )
 							$this->saveStatsToFile($filePrefix, $dest->attributes()->name, $dest);
 					}
+				}
+			}
+		}
+	}
+
+	/**
+	 * Parse xml v3.x - '_default' views cache
+	 * @param SimpleXMLElement $xml
+	 * @param string $filePrefix
+	 */
+	private function parseDefaultViewsCacheV3($xml, $filePrefix) {
+		foreach ( $xml as $value ) {
+			if ( $value->attributes()->name == '_default' ) {
+				foreach ( $value as $dest ) {
+					$this->saveStatsToFile($filePrefix, $dest->name, $dest->counter);
 				}
 			}
 		}
