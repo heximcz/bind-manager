@@ -36,7 +36,7 @@ abstract class AbstractBindStatistics {
 	}
 
 	/**
-	 * parse xml simple values
+	 * Parse xml simple values
 	 * @param SimpleXMLElement $xml - top element object
 	 * @param string $filePrefix
 	 * @param string $name - subelement object name (last)
@@ -54,7 +54,7 @@ abstract class AbstractBindStatistics {
 	}
 
 	/**
-	 * parse xml - '_default' views
+	 * Parse xml - '_default' views
 	 * @param SimpleXMLElement $xml - top element object
 	 * @param string $filePrefix
 	 * @param string $name - subelement object name (last)
@@ -68,7 +68,12 @@ abstract class AbstractBindStatistics {
 			}
 		}
 	}
-	
+	/**
+	 * Create a file with statistic value
+	 * @param string $prefix - file prefix
+	 * @param string $name - filename
+	 * @param string $value
+	 */
 	private function saveStatsToFile($prefix,$name,$value) {
 		$sfs = new Filesystem();
 		if (! $sfs->exists( $this->config['system']['statsdir'] ))
