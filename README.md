@@ -62,8 +62,6 @@ print help:
 
 * ~~php ./bind-manager.php bind -h~~
 
-```php ./bind-manager.php bind:sys -h```
-
 ``` shell
 user@server:/opt/bind-manager# php ./bind-manager.php bind:sys -h
 
@@ -86,6 +84,13 @@ Help:
  Update db.root, checks and reload actions.
 
 ```
+
+```php ./bind-manager.php bind:sys update```
+
+```php ./bind-manager.php bind:sys restart```
+
+```php ./bind-manager.php bind:sys statistics```
+
 
 ## Using via crontab
 
