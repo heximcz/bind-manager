@@ -3,7 +3,9 @@
 
 ## Overview
 
-Periodical update of the root zone for Bind DNS resolver
+Periodical update of the root zone for Bind DNS resolver.
+
+Support for Bind 9 Statistics and Zabbix monitoring
 
 ## Prerequisites
 
@@ -36,12 +38,18 @@ print help:
 
 ```php ./bind-manager.php```
 
-```php ./bind-manager.php bind -h```
+```~~php ./bind-manager.php bind -h~~```
+
+```php ./bind-manager.php bind:sys -h```
 
 ## Using via crontab
 
 add this lines to your /etc/crontab:
 
-```0 0  * * *   root /usr/bin/php /opt/bind-manager/bind-manager.php bind --restart >> /var/log/bind-manager/bind-manager.log```
+```~~0 0  * * *   root /usr/bin/php /opt/bind-manager/bind-manager.php bind --restart >> /var/log/bind-manager/bind-manager.log~~```
 
-```10 0  * * 6   root /usr/bin/php /opt/bind-manager/bind-manager.php bind --update >> /var/log/bind-manager/bind-manager.log```
+```~~10 0  * * 6   root /usr/bin/php /opt/bind-manager/bind-manager.php bind --update >> /var/log/bind-manager/bind-manager.log~~```
+
+```10 0  * * 6   root /usr/bin/php /opt/bind-manager/bind-manager.php bind:sys update >> /var/log/bind-manager/bind-manager.log```
+
+```*  *  * * *   root /usr/bin/php /opt/bind-manager/bind-manager.php bind:sys statistics >> /var/log/bind-manager/bind-manager.log```
