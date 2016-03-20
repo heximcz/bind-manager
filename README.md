@@ -5,7 +5,7 @@
 
 Periodical update of the root zone for Bind DNS resolver.
 
-Support for Bind 9 Statistics and Zabbix monitoring
+**NEW:** Support for Bind 9 Statistics and Zabbix monitoring.
 
 ## Prerequisites
 
@@ -31,6 +31,17 @@ bind, wget, php > 5.6.x (with enable shell_exec and exec function in php.ini)
  - ```git checkout tags/<last tag name of stable version>```
  - How to finding the tag is that checked out? Simply.
  - ```git describe --tags```
+
+## Zabbix statistics
+
+### Allow statistics in named.conf
+
+```
+# https://ftp.isc.org/isc/bind9/9.10.4b2/doc/arm/Bv9ARM.ch06.html#statschannels
+statistics-channels {
+   inet 127.0.0.1 port 8053 
+};
+```
 
 ## Example Usage
 
