@@ -4,15 +4,14 @@ namespace App\Console;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Console\Input\InputOption;
+use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Console\Input\ArrayInput;
 use Src\BindManager\BindManager;
-use Exception;
 use Src\Logger\OutputLogger;
 
 class CliBind extends Command
 {
 
-	private $config;
 
 	public function __construct($config)
 	{
@@ -23,39 +22,33 @@ class CliBind extends Command
 	protected function configure()
 	{
 		$this
-		->setName('bind')
+		->setName('bind:sys')
 		->setDescription('Update db.root, checks and reload actions.')
-		->addOption(
-				'update',
-				'u',
-				InputOption::VALUE_NONE,
-				'update db.root and reload bind with test'
-				)
-		->addOption(
-				'restart',
-				'r',
-				InputOption::VALUE_NONE,
-				'reload bind with tests'
-		);
+		->addArgument ( 'action', InputArgument::OPTIONAL, 'update | restart | statistics', 'update' )
+		;
 	}
 
 	protected function execute(InputInterface $input, OutputInterface $output) {
-		if ($input->getOption('update') && $input->getOption('restart')) {
-			throw new Exception("Only one option is enabled.");
-		}
-		else {
-			$logger = new OutputLogger($output);
-			$bind = new BindManager($this->config, $output);
-			$logger->log("Start bind manager.");
-			if ($input->getOption('update')) {
-				$bind->updateBind();
-			}
-			elseif ($input->getOption('restart')) {
+
+		$logger = new OutputLogger($output);
+		$logger->log("Start bind manager.");
+		$action = $input->getArgument ( 'action' );
+		$bind = new BindManager($this->config, $logger);
+		switch ($action) {
+			case "restart":
 				$bind->restartBind();
-			}
-			else 
-				$logger->log("Nothing to do.");
-			$logger->log("All done.");
+				break;
+			case "update":
+				$bind->updateBind();
+				break;
+			case "statistics":
+				$bind->createBindStatistics();
+				break;
+			default:
+				$command = $this->getApplication()->get('help');
+				$command->run(new ArrayInput(['command_name' => $this->getName()]), $output);
+				break;
 		}
 	}
+
 }

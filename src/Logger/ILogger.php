@@ -8,4 +8,8 @@ interface ILogger{
 	const LEVEL_ERROR = "ERROR";
 	
 	public function log($message, $level = self::LEVEL_INFO);
+	public function setError();
+	public function setInfo();
+	public function setDebug();
+	public function setNotice();
 }
