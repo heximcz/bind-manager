@@ -4,16 +4,17 @@ system:
 
     # SYSTEMCTL (etc. systemctl restart bind9.service)
     # use systemctl 0=false or 1=true - OPTIONAL (if true script not use 'bind-restart')
-    systemctl: "1"
+    systemctl: "0"
     # name of bind service in systemctl
     bindservice: "bind9.service"
     
     # where is file with root zones
     rzfile: "/etc/bind/db.root"
 
-    # bind statistics url
-    # howto: https://ftp.isc.org/isc/bind9/9.10.4b2/doc/arm/Bv9ARM.ch06.html#statschannels
-    statsurl: "127.0.0.1:8053/xml/v2"
+    # bind statistics url - howto: https://ftp.isc.org/isc/bind9/9.10.4b2/doc/arm/Bv9ARM.ch06.html#statschannels
+    statsurl: "http://127.0.0.1:8053/xml/v2"
+    # directory for store files with a statistics values
+    statsdir: "/var/cache/bind/named-stats/"
 
 # url source for db.root
 source:
