@@ -1,7 +1,15 @@
 <?php
+/**
+ * Parse BIND statistics XML
+ *
+ * @version 0.1.1-dev
+ *
+ */
+
 namespace Src\BindManager;
 
 use Symfony\Component\Filesystem\Filesystem;
+use Exception;
 
 abstract class AbstractBindStatistics {
 	
@@ -19,6 +27,30 @@ abstract class AbstractBindStatistics {
 	 * Parse statistics elements
 	 */
 	protected function parseXmlStats() {
+		// usually version 2.x
+		if ( is_object($this->xml->bind->statistics->attributes()->version) ) {
+			$xmlBindVersion = $this->xml->bind->statistics->attributes()->version;
+			if ( $xmlBindVersion > 2 && $xmlBindVersion < 3 ) {
+				$this->parseXmlStatsV2();
+				return;
+			}
+		}
+		// usually version 3.x
+		if ( is_object($this->xml->attributes()->version) ) {
+			$xmlBindVersion = $this->xml->attributes()->version;
+			if ( $xmlBindVersion > 3 && $xmlBindVersion < 4 ) {
+				$this->parseXmlStatsV3();
+				return;
+			}
+		}
+		throw new Exception('Cannot detect Bind Statistics XML version!');
+	}
+	
+	/**
+	 * XML version 2.x
+	 * Parse statistics elements
+	 */
+	protected function parseXmlStatsV2() {
 		if ( is_object($this->xml) ) {
 			// Incoming Queries
 			$this->parseSimpleValues($this->xml->bind->statistics->server->{'queries-in'}, 'queries-in', 'rdtype');
@@ -35,6 +67,30 @@ abstract class AbstractBindStatistics {
 		}
 	}
 
+	/**
+	 * XML version 3.x
+	 * Parse statistics elements
+	 */
+	protected function parseXmlStatsV3() {
+		if ( is_object($this->xml) ) {
+			// Incoming Queries
+//			$this->parseSimpleValues($this->xml->statistics->server->{'queries-in'}, 'queries-in', 'rdtype');
+			// Incoming Requests
+			$this->parseSimpleValues($this->xml->server->counters, 'requests', 'opcode');
+			// Server Statistics
+			/*
+			$this->parseSimpleValues($this->xml->bind->statistics->server->nsstat, 'nsstat');
+			// Socket I/O Statistics
+			$this->parseSimpleValues($this->xml->bind->statistics->server->sockstat, 'sockstat');
+			// Cache DB RRsets for View _default
+			$this->parseDefaultViews($this->xml->bind->statistics->views->view->cache, 'default-cache-rrsets', 'rrset');
+			// Outgoing Queries for View _default
+			$this->parseDefaultViews($this->xml->bind->statistics->views->view, 'default-queries-out', 'rdtype');
+			*/
+		}
+	}
+	
+	
 	/**
 	 * Parse xml simple values
 	 * @param SimpleXMLElement $xml - top element object
@@ -68,6 +124,19 @@ abstract class AbstractBindStatistics {
 			}
 		}
 	}
+	
+	private function parseStatsElementV3($xml,$filePrefix,$name) {
+		foreach ( $xml as $value ) {
+			if ( $value->attributes()->type == $name ) {
+				foreach ( $value as $dest ) {
+					$this->saveStatsToFile($filePrefix, $dest->attributes()->name, $dest);
+//					echo $dest->attributes()->name.':'.$dest.PHP_EOL;
+				}
+			}
+		}
+		
+	}
+	
 	/**
 	 * Create a file with statistic value
 	 * @param string $prefix - file prefix
