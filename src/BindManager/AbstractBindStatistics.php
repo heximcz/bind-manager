@@ -78,9 +78,9 @@ abstract class AbstractBindStatistics {
 			// Incoming Requests
 			$this->parseSimpleValuesV3($this->xml->server->counters, 'requests', 'opcode');
 			// Server Statistics
-			$this->parseSimpleValuesV3($this->xml->server->counters, 'nsstat');
+			$this->parseSimpleValuesV3($this->xml->server->counters, 'nsstat', 'nsstat');
 			// Socket I/O Statistics
-			$this->parseSimpleValuesV3($this->xml->server->counters, 'sockstat');
+			$this->parseSimpleValuesV3($this->xml->server->counters, 'sockstat', 'sockstat');
 			// Cache DB RRsets for View _default
 			/*
 			$this->parseSimpleValuesV3($this->xml->bind->statistics->views->view->cache, 'default-cache-rrsets', 'rrset');
