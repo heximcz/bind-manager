@@ -1,4 +1,4 @@
-# Bind Manager
+# Manager for Bind 9 DNS Resolver 
 
 
 ## Overview
