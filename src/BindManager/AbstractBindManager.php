@@ -14,7 +14,6 @@ abstract class AbstractBindManager extends AbstractBindStatistics {
 	public function __construct(array $config, OutputLogger $logger) {
 		$this->config = $config;
 		$this->logger = $logger;
-		parent::__construct($this->config, $this->logger);
 	}
 	
 	protected function restartBindService() {
