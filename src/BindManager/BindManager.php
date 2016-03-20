@@ -33,7 +33,7 @@ class BindManager extends AbstractBindManager implements IBindManager {
 	
 	public function createBindStatistics() {
 		if (! $this->getBindStatisticsXml() )
-			throw new Exception( 'Cannot get bind statistics from:' . $this->config['system']['statsurl'] );
+			throw new Exception( 'Cannot get bind statistics from: ' . $this->config['system']['statsurl'] );
 		$this->logger->log("Create statistics.");
 		$this->parseXmlStats();
 		$this->logger->log("Done.");
