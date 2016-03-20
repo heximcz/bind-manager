@@ -61,7 +61,7 @@ abstract class AbstractBindStatistics {
 	 */
 	private function parseDefaultViews($xml, $filePrefix, $name) {
 		foreach ( $xml as $value ) {
-			if ( $value->name == '_default' ) {
+			if ( $value->name == '_default' || $value->attributes()->name == '_default' ) {
 				foreach ( $value->$name as $value ) {
 					$this->saveStatsToFile($filePrefix, $value->name, $value->counter);
 				}
