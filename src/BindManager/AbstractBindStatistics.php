@@ -17,7 +17,7 @@ abstract class AbstractBindStatistics {
 	}
 	
 	protected function getBindStatisticsXml() {
-		if (! ($xml=file_get_contents($this->config['system']['statsurl'])) === false ) {
+		if (! ($xml = @file_get_contents($this->config['system']['statsurl'])) === false ) {
 			if (! ($this->xml = simplexml_load_string($xml)) === false )
 				return true;
 		}
