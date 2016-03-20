@@ -44,15 +44,15 @@ statistics-channels {
 /etc/init.d/bind9 reload
 ```
 
-* Configure Zabbix agent
+* Configure Zabbix Agent
 
 ```
 cp /opt/bind-manager/zabbix/bind-resolver.conf /etc/zabbix/zabbix_agentd.d/
 /etc/init.d/zabbix-agent restart
 ```
 
-* Download the Bind xml template from github [bind template](https://github.com/heximcz/bind-manager/blob/master/zabbix/zabbix_bind_template.xml)
-* Import template to your Zabbix monitoring
+* Download the Bind XML template from github. [bind template](https://github.com/heximcz/bind-manager/blob/master/zabbix/zabbix_bind_template.xml)
+* Import the template to your Zabbix monitoring.
 
 ## Example Usage
 
