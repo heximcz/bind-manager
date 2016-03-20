@@ -237,31 +237,24 @@
         "homepage": "https://symfony.com"
     },
     {
-        "name": "symfony/dom-crawler",
+        "name": "symfony/filesystem",
         "version": "v3.0.3",
         "version_normalized": "3.0.3.0",
         "source": {
             "type": "git",
-            "url": "https://github.com/symfony/dom-crawler.git",
-            "reference": "981c8edb4538f88ba976ed44bdcaa683fce3d6c6"
+            "url": "https://github.com/symfony/filesystem.git",
+            "reference": "23ae8f9648d0a7fe94a47c8e20e5bf37c489a451"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/symfony/dom-crawler/zipball/981c8edb4538f88ba976ed44bdcaa683fce3d6c6",
-            "reference": "981c8edb4538f88ba976ed44bdcaa683fce3d6c6",
+            "url": "https://api.github.com/repos/symfony/filesystem/zipball/23ae8f9648d0a7fe94a47c8e20e5bf37c489a451",
+            "reference": "23ae8f9648d0a7fe94a47c8e20e5bf37c489a451",
             "shasum": ""
         },
         "require": {
-            "php": ">=5.5.9",
-            "symfony/polyfill-mbstring": "~1.0"
+            "php": ">=5.5.9"
         },
-        "require-dev": {
-            "symfony/css-selector": "~2.8|~3.0"
-        },
-        "suggest": {
-            "symfony/css-selector": ""
-        },
-        "time": "2016-02-28 16:24:34",
+        "time": "2016-02-23 15:16:06",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -271,7 +264,7 @@
         "installation-source": "dist",
         "autoload": {
             "psr-4": {
-                "Symfony\\Component\\DomCrawler\\": ""
+                "Symfony\\Component\\Filesystem\\": ""
             },
             "exclude-from-classmap": [
                 "/Tests/"
@@ -291,7 +284,7 @@
                 "homepage": "https://symfony.com/contributors"
             }
         ],
-        "description": "Symfony DomCrawler Component",
+        "description": "Symfony Filesystem Component",
         "homepage": "https://symfony.com"
     }
 ]
