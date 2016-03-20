@@ -28,17 +28,17 @@ abstract class AbstractBindStatistics {
 	 */
 	protected function parseXmlStats() {
 		// usually version 2.x
-		if ( is_object($this->xml->bind->statistics->attributes()->version) ) {
+		if ( !empty($this->xml->bind) ) {
 			$xmlBindVersion = $this->xml->bind->statistics->attributes()->version;
-			if ( $xmlBindVersion > 2 && $xmlBindVersion < 3 ) {
+			if ( $xmlBindVersion >= 2 && $xmlBindVersion < 3 ) {
 				$this->parseXmlStatsV2();
 				return;
 			}
 		}
 		// usually version 3.x
-		if ( is_object($this->xml->attributes()->version) ) {
+		if ( !empty($this->xml->server) ) {
 			$xmlBindVersion = $this->xml->attributes()->version;
-			if ( $xmlBindVersion > 3 && $xmlBindVersion < 4 ) {
+			if ( $xmlBindVersion >= 3 && $xmlBindVersion < 4 ) {
 				$this->parseXmlStatsV3();
 				return;
 			}
@@ -74,25 +74,25 @@ abstract class AbstractBindStatistics {
 	protected function parseXmlStatsV3() {
 		if ( is_object($this->xml) ) {
 			// Incoming Queries
-//			$this->parseSimpleValues($this->xml->statistics->server->{'queries-in'}, 'queries-in', 'rdtype');
+			$this->parseSimpleValuesV3($this->xml->server->counters, 'queries-in', 'qtype');
 			// Incoming Requests
-			$this->parseSimpleValues($this->xml->server->counters, 'requests', 'opcode');
+			$this->parseSimpleValuesV3($this->xml->server->counters, 'requests', 'opcode');
 			// Server Statistics
-			/*
-			$this->parseSimpleValues($this->xml->bind->statistics->server->nsstat, 'nsstat');
+			$this->parseSimpleValuesV3($this->xml->server->counters, 'nsstat');
 			// Socket I/O Statistics
-			$this->parseSimpleValues($this->xml->bind->statistics->server->sockstat, 'sockstat');
+			$this->parseSimpleValuesV3($this->xml->server->counters, 'sockstat');
 			// Cache DB RRsets for View _default
-			$this->parseDefaultViews($this->xml->bind->statistics->views->view->cache, 'default-cache-rrsets', 'rrset');
+			/*
+			$this->parseSimpleValuesV3($this->xml->bind->statistics->views->view->cache, 'default-cache-rrsets', 'rrset');
 			// Outgoing Queries for View _default
-			$this->parseDefaultViews($this->xml->bind->statistics->views->view, 'default-queries-out', 'rdtype');
+			$this->parseSimpleValuesV3($this->xml->bind->statistics->views->view, 'default-queries-out', 'rdtype');
 			*/
 		}
 	}
 	
 	
 	/**
-	 * Parse xml simple values
+	 * Parse xml v2.x simple values
 	 * @param SimpleXMLElement $xml - top element object
 	 * @param string $filePrefix
 	 * @param string $name - subelement object name (last)
@@ -110,7 +110,7 @@ abstract class AbstractBindStatistics {
 	}
 
 	/**
-	 * Parse xml - '_default' views
+	 * Parse xml v2.x - '_default' views
 	 * @param SimpleXMLElement $xml - top element object
 	 * @param string $filePrefix
 	 * @param string $name - subelement object name (last)
@@ -125,12 +125,17 @@ abstract class AbstractBindStatistics {
 		}
 	}
 	
-	private function parseStatsElementV3($xml,$filePrefix,$name) {
+	/**
+	 * Parse xml v3.x simple values 
+	 * @param SimpleXMLElement $xml
+	 * @param string $filePrefix
+	 * @param string $name
+	 */
+	private function parseSimpleValuesV3($xml,$filePrefix,$name) {
 		foreach ( $xml as $value ) {
 			if ( $value->attributes()->type == $name ) {
 				foreach ( $value as $dest ) {
 					$this->saveStatsToFile($filePrefix, $dest->attributes()->name, $dest);
-//					echo $dest->attributes()->name.':'.$dest.PHP_EOL;
 				}
 			}
 		}
