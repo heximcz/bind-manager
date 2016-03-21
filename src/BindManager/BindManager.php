@@ -2,6 +2,8 @@
 namespace Src\BindManager;
 
 use Src\Logger\OutputLogger;
+use App\Config\GetYAMLConfig;
+
 use Exception;
 /*
  * TODO:
@@ -12,7 +14,7 @@ use Exception;
 
 class BindManager extends AbstractBindManager implements IBindManager {
 	
-	public function __construct(array $config, OutputLogger $output) {
+	public function __construct(GetYAMLConfig $config, OutputLogger $output) {
 		parent::__construct($config, $output);
 	}
 	
@@ -33,7 +35,7 @@ class BindManager extends AbstractBindManager implements IBindManager {
 	
 	public function createBindStatistics() {
 		if (! $this->getBindStatisticsXml() )
-			throw new Exception( 'Cannot get bind statistics from: ' . $this->config['system']['statsurl'] );
+			throw new Exception( 'Cannot get bind statistics from: ' . $this->config->system['statsurl'] );
 		$this->logger->log("Create statistics.");
 		$this->parseXmlStats();
 		$this->logger->log("Done.");

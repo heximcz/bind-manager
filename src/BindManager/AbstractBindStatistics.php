@@ -16,7 +16,7 @@ abstract class AbstractBindStatistics {
 	private $xml;
 
 	protected function getBindStatisticsXml() {
-		if (! ($xml = @file_get_contents($this->config['system']['statsurl'])) === false ) {
+		if (! ($xml = @file_get_contents($this->config->system['statsurl'])) === false ) {
 			if (! ($this->xml = simplexml_load_string($xml)) === false )
 				return true;
 		}
@@ -186,9 +186,9 @@ abstract class AbstractBindStatistics {
 		$name = str_replace("#","hash-",$name);
 		// prepare filename
 		$filename = strtolower($prefix.'-'.$name);
-		if (! $sfs->exists( $this->config['system']['statsdir'] ))
-			$sfs->mkdir( $this->config['system']['statsdir'] );
-		$sfs->dumpFile( $this->config['system']['statsdir'] . DIRECTORY_SEPARATOR . $filename, $value );
+		if (! $sfs->exists( $this->config->system['statsdir'] ))
+			$sfs->mkdir( $this->config->system['statsdir'] );
+		$sfs->dumpFile( $this->config->system['statsdir'] . DIRECTORY_SEPARATOR . $filename, $value );
 	}
 
 }

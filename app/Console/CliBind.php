@@ -8,12 +8,14 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\ArrayInput;
 use Src\BindManager\BindManager;
 use Src\Logger\OutputLogger;
+use App\Config\GetYAMLConfig;
 
 class CliBind extends Command
 {
 
+	protected $config;
 
-	public function __construct($config)
+	public function __construct(GetYAMLConfig $config)
 	{
 		parent::__construct();
 		$this->config = $config;
@@ -32,7 +34,7 @@ class CliBind extends Command
 
 		$logger = new OutputLogger($output);
 		$logger->log("Start bind manager.");
-		$action = $input->getArgument ( 'action' );
+		$action = $input->getArgument( 'action' );
 		$bind = new BindManager($this->config, $logger);
 		switch ($action) {
 			case "restart":

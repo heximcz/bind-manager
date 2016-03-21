@@ -2,40 +2,44 @@
 namespace App\Config;
 
 use Symfony\Component\Yaml\Parser;
-use Symfony\Component\Yaml\Exception\ParseException;
+use ArrayObject;
 use Exception;
 
-class GetYAMLConfig {
-	
-	private $defautConfigPath;
-	private $customConfigPath;
-	private $config;
+class GetYAMLConfig extends ArrayObject {
 
 	public function __construct() {
-		$this->defautConfigPath = dirname(__FILE__).DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'config.default.yml';
-		$this->customConfigPath = dirname(__FILE__).DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'config.yml';
-		$this->createConfig();
+		$this->createConfig(
+				dirname(__FILE__).DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'config.default.yml' ,
+				dirname(__FILE__).DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'config.yml'
+				);
 	}
-	
-	public function getConfigData() {
-		return $this->config;
-	}
-	
+
+	/**
+	 * Parse YAML config file
+	 * @param string $configPath
+	 */
 	private function parseConfig( $configPath ) {
 		$yaml = new Parser();
 		return $yaml->parse( file_get_contents( $configPath ) );
 	}
 	
-	private function createConfig() {
-   		if ( file_exists( $this->defautConfigPath ) ) {
-       		$defconf = $this->parseConfig( $this->defautConfigPath );
-		    if ( file_exists( $this->customConfigPath ) ) {
-			    $customconf = $this->parseConfig( $this->customConfigPath );
-			    $this->config = array_replace_recursive( $defconf, $customconf );
+	/**
+	 * Create array object with configurations values,
+	 * Overwrite default config values if a custom file does exist
+	 * 
+	 * @param string $defaultPath
+	 * @param string $customPath
+	 * @throws Exception
+	 */
+	private function createConfig($defaultPath,$customPath) {
+   		if ( file_exists( $defaultPath ) ) {
+       		$defaultConfig = $this->parseConfig( $defaultPath );
+		    if ( file_exists( $customPath ) ) {
+			    $customConfig = $this->parseConfig( $customPath );
+			    parent::__construct( array_replace_recursive( $defaultConfig, $customConfig ), ArrayObject::ARRAY_AS_PROPS);
+			    return;
 		    }
-		    else {
-		        $this->config = $defconf;
-		    }
+		    parent::__construct( $defaultConfig, ArrayObject::ARRAY_AS_PROPS );
    		}
    		else
    		    throw new Exception( get_class($this) . ' FATAL ERROR: config.default.yml no exist!');
