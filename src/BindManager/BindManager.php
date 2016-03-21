@@ -35,7 +35,7 @@ class BindManager extends AbstractBindManager implements IBindManager {
 	public function createBindStatistics() {
 		$bind = new SystemBindStatistics($this->config, $this->logger);
 		$this->logger->log("Create statistics.");
-		$bind->getBindStatisticsXml()->parseXmlStats();
+		$bind->getBindStatistics()->parseStatistics();
 		$this->logger->log("Done.");
 	}
 

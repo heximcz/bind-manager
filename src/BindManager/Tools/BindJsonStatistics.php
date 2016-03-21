@@ -2,10 +2,18 @@
 
 namespace Src\BindManager;
 
-class BindJsonStatistics extends AbstractBindManager {
+use stdClass;
 
+class BindJsonStatistics {
+
+	private $config;
+	
 	public function __construct($config) {
-		parent::__construct($config);
+		$this->config = $config;
 	}
 
+	public function parseJsonStats(stdClass $json) {
+		var_dump($json);
+	}
+	
 }
