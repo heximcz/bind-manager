@@ -10,7 +10,10 @@
 			"App\\Console\\" : "app/Console/",
 			"App\\Config\\" : "app/Config/",
 			"Src\\Checks\\" : "src/Checks/",
-			"Src\\BindManager\\" : "src/BindManager/",
+			"Src\\BindManager\\" : [
+				"src/BindManager",
+				"src/BindManager/Tools"
+			],
 			"Src\\Logger\\" : "src/Logger/"
 		}
 	},

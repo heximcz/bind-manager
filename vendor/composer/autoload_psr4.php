@@ -12,7 +12,7 @@ return array(
     'Symfony\\Component\\Console\\' => array($vendorDir . '/symfony/console'),
     'Src\\Logger\\' => array($baseDir . '/src/Logger'),
     'Src\\Checks\\' => array($baseDir . '/src/Checks'),
-    'Src\\BindManager\\' => array($baseDir . '/src/BindManager'),
+    'Src\\BindManager\\' => array($baseDir . '/src/BindManager', $baseDir . '/src/BindManager/Tools'),
     'App\\Console\\' => array($baseDir . '/app/Console'),
     'App\\Config\\' => array($baseDir . '/app/Config'),
 );

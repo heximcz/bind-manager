@@ -1,79 +1,36 @@
 <?php
-/**
- * Parse BIND statistics XML
- *
- * @version 0.1.1-dev
- *
- */
-
 namespace Src\BindManager;
 
 use Symfony\Component\Filesystem\Filesystem;
 use App\Config\GetYAMLConfig;
-use Src\Logger\OutputLogger;
-use Exception;
+use SimpleXMLElement;
 
-class SystemBindStatistics extends AbstractBindManager {
+class BindXmlStatistics {
 
-	private $xml;
+	private $config;
 
-	public function __construct(GetYAMLConfig $config, OutputLogger $logger) {
-		parent::__construct($config, $logger);
-	}
-	
-	/**
-	 * Get Bind Statistics from url (xml, json)
-	 * @throws \Exception
-	 */
-	public function getBindStatisticsXml() {
-		if (! ($xml = @file_get_contents($this->config->system['statsurl'])) === false ) {
-			if (! ($this->xml = simplexml_load_string($xml)) === false )
-				return $this;
-		}
-		throw new Exception( 'Cannot get bind statistics from: ' . $this->config->system['statsurl'] );
-	}
-
-	/**
-	 * Parse statistics elements
-	 */
-	public function parseXmlStats() {
-		// usually version 2.x
-		if ( !empty($this->xml->bind) ) {
-			$xmlBindVersion = $this->xml->bind->statistics->attributes()->version;
-			if ( $xmlBindVersion >= 2 && $xmlBindVersion < 3 ) {
-				$this->parseXmlStatsV2();
-				return $this;
-			}
-		}
-		// usually version 3.x
-		if ( !empty($this->xml->server) ) {
-			$xmlBindVersion = $this->xml->attributes()->version;
-			if ( $xmlBindVersion >= 3 && $xmlBindVersion < 4 ) {
-				$this->parseXmlStatsV3();
-				return $this;
-			}
-		}
-		throw new Exception('Cannot detect Bind Statistics XML version!');
+	public function __construct(GetYAMLConfig $config) {
+		$this->config = $config;
 	}
 
 	/**
 	 * Bind 9 XML version 2.x
 	 * Parse statistics elements
 	 */
-	protected function parseXmlStatsV2() {
-		if ( is_object($this->xml) ) {
+	public function parseXmlStatsV2(SimpleXMLElement $xml) {
+		if ( is_object($xml) ) {
 			// Incoming Queries
-			$this->parseSimpleValues( $this->xml->bind->statistics->server->{'queries-in'}, 'queries-in', 'rdtype' );
+			$this->parseSimpleValues( $xml->bind->statistics->server->{'queries-in'}, 'queries-in', 'rdtype' );
 			// Incoming Requests
-			$this->parseSimpleValues( $this->xml->bind->statistics->server->requests, 'requests', 'opcode' );
+			$this->parseSimpleValues( $xml->bind->statistics->server->requests, 'requests', 'opcode' );
 			// Server Statistics
-			$this->parseSimpleValues( $this->xml->bind->statistics->server->nsstat, 'nsstat' );
+			$this->parseSimpleValues( $xml->bind->statistics->server->nsstat, 'nsstat' );
 			// Socket I/O Statistics
-			$this->parseSimpleValues( $this->xml->bind->statistics->server->sockstat, 'sockstat' );
+			$this->parseSimpleValues( $xml->bind->statistics->server->sockstat, 'sockstat' );
 			// Cache DB RRsets for View _default
-			$this->parseDefaultViews( $this->xml->bind->statistics->views->view->cache, 'default-cache-rrsets', 'rrset' );
+			$this->parseDefaultViews( $xml->bind->statistics->views->view->cache, 'default-cache-rrsets', 'rrset' );
 			// Outgoing Queries for View _default
-			$this->parseDefaultViews( $this->xml->bind->statistics->views->view, 'default-queries-out', 'rdtype' );
+			$this->parseDefaultViews( $xml->bind->statistics->views->view, 'default-queries-out', 'rdtype' );
 		}
 	}
 
@@ -81,20 +38,20 @@ class SystemBindStatistics extends AbstractBindManager {
 	 * Bind 9 XML version 3.x
 	 * Parse statistics elements
 	 */
-	protected function parseXmlStatsV3() {
-		if ( is_object($this->xml) ) {
+	public function parseXmlStatsV3(SimpleXMLElement $xml) {
+		if ( is_object($xml) ) {
 			// Incoming Queries
-			$this->parseSimpleValuesV3( $this->xml->server->counters, 'queries-in', 'qtype' );
+			$this->parseSimpleValuesV3( $xml->server->counters, 'queries-in', 'qtype' );
 			// Incoming Requests
-			$this->parseSimpleValuesV3( $this->xml->server->counters, 'requests', 'opcode' );
+			$this->parseSimpleValuesV3( $xml->server->counters, 'requests', 'opcode' );
 			// Server Statistics
-			$this->parseSimpleValuesV3( $this->xml->server->counters, 'nsstat', 'nsstat' );
+			$this->parseSimpleValuesV3( $xml->server->counters, 'nsstat', 'nsstat' );
 			// Socket I/O Statistics
-			$this->parseSimpleValuesV3( $this->xml->server->counters, 'sockstat', 'sockstat' );
+			$this->parseSimpleValuesV3( $xml->server->counters, 'sockstat', 'sockstat' );
 			// Cache DB RRsets for View _default
-			$this->parseDefaultViewsCacheV3( $this->xml->views->view->cache, 'default-cache-rrsets' );
+			$this->parseDefaultViewsCacheV3( $xml->views->view->cache, 'default-cache-rrsets' );
 			// Outgoing Queries for View _default
-			$this->parseDefaultViewsV3( $this->xml->views->view, 'default-queries-out', 'resqtype' );
+			$this->parseDefaultViewsV3( $xml->views->view, 'default-queries-out', 'resqtype' );
 		}
 	}
 
@@ -104,7 +61,7 @@ class SystemBindStatistics extends AbstractBindManager {
 	 * @param string $filePrefix
 	 * @param string $name - subelement object name (last)
 	 */
-	private function parseSimpleValues($xml,$filePrefix,$name = NULL) {
+	private function parseSimpleValues(SimpleXMLElement $xml, $filePrefix,$name = NULL) {
 		if (! is_null($name) ) {
 			foreach ( $xml->$name as $value ) {
 				$this->saveStatsToFile($filePrefix, $value->name, $value->counter);
@@ -122,7 +79,7 @@ class SystemBindStatistics extends AbstractBindManager {
 	 * @param string $filePrefix
 	 * @param string $name - subelement object name (last)
 	 */
-	private function parseDefaultViews($xml, $filePrefix, $name) {
+	private function parseDefaultViews(SimpleXMLElement $xml, $filePrefix, $name) {
 		foreach ( $xml as $value ) {
 			if ( $value->name == '_default' || $value->attributes()->name == '_default' ) {
 				foreach ( $value->$name as $value ) {
@@ -133,12 +90,12 @@ class SystemBindStatistics extends AbstractBindManager {
 	}
 
 	/**
-	 * Parse xml v3.x simple values 
+	 * Parse xml v3.x simple values
 	 * @param SimpleXMLElement $xml
 	 * @param string $filePrefix
 	 * @param string $name
 	 */
-	private function parseSimpleValuesV3($xml,$filePrefix,$name) {
+	private function parseSimpleValuesV3(SimpleXMLElement $xml,$filePrefix,$name) {
 		foreach ( $xml as $value ) {
 			if ( $value->attributes()->type == $name ) {
 				foreach ( $value as $dest ) {
@@ -154,7 +111,7 @@ class SystemBindStatistics extends AbstractBindManager {
 	 * @param string $filePrefix
 	 * @param string $name
 	 */
-	private function parseDefaultViewsV3($xml, $filePrefix, $name) {
+	private function parseDefaultViewsV3(SimpleXMLElement $xml, $filePrefix, $name) {
 		foreach ( $xml as $value ) {
 			if ($value->attributes ()->name == '_default') {
 				foreach ( $value->counters as $type ) {
@@ -172,7 +129,7 @@ class SystemBindStatistics extends AbstractBindManager {
 	 * @param SimpleXMLElement $xml
 	 * @param string $filePrefix
 	 */
-	private function parseDefaultViewsCacheV3($xml, $filePrefix) {
+	private function parseDefaultViewsCacheV3(SimpleXMLElement $xml, $filePrefix) {
 		foreach ( $xml as $value ) {
 			if ( $value->attributes()->name == '_default' ) {
 				foreach ( $value as $dest ) {
@@ -198,7 +155,7 @@ class SystemBindStatistics extends AbstractBindManager {
 		$filename = strtolower($prefix.'-'.$name);
 		if (! $sfs->exists( $this->config->system['statsdir'] ))
 			$sfs->mkdir( $this->config->system['statsdir'] );
-		$sfs->dumpFile( $this->config->system['statsdir'] . DIRECTORY_SEPARATOR . $filename, $value );
+			$sfs->dumpFile( $this->config->system['statsdir'] . DIRECTORY_SEPARATOR . $filename, $value );
 	}
-
+	
 }
