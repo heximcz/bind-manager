@@ -9,30 +9,40 @@
 namespace Src\BindManager;
 
 use Symfony\Component\Filesystem\Filesystem;
+use App\Config\GetYAMLConfig;
+use Src\Logger\OutputLogger;
 use Exception;
 
-abstract class AbstractBindStatistics {
+class SystemBindStatistics extends AbstractBindManager {
 
 	private $xml;
 
-	protected function getBindStatisticsXml() {
+	public function __construct(GetYAMLConfig $config, OutputLogger $logger) {
+		parent::__construct($config, $logger);
+	}
+	
+	/**
+	 * Get Bind Statistics from url (xml, json)
+	 * @throws \Exception
+	 */
+	public function getBindStatisticsXml() {
 		if (! ($xml = @file_get_contents($this->config->system['statsurl'])) === false ) {
 			if (! ($this->xml = simplexml_load_string($xml)) === false )
-				return true;
+				return $this;
 		}
-		return false;
+		throw new Exception( 'Cannot get bind statistics from: ' . $this->config->system['statsurl'] );
 	}
 
 	/**
 	 * Parse statistics elements
 	 */
-	protected function parseXmlStats() {
+	public function parseXmlStats() {
 		// usually version 2.x
 		if ( !empty($this->xml->bind) ) {
 			$xmlBindVersion = $this->xml->bind->statistics->attributes()->version;
 			if ( $xmlBindVersion >= 2 && $xmlBindVersion < 3 ) {
 				$this->parseXmlStatsV2();
-				return;
+				return $this;
 			}
 		}
 		// usually version 3.x
@@ -40,7 +50,7 @@ abstract class AbstractBindStatistics {
 			$xmlBindVersion = $this->xml->attributes()->version;
 			if ( $xmlBindVersion >= 3 && $xmlBindVersion < 4 ) {
 				$this->parseXmlStatsV3();
-				return;
+				return $this;
 			}
 		}
 		throw new Exception('Cannot detect Bind Statistics XML version!');
