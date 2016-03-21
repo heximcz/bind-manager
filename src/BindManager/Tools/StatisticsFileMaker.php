@@ -18,6 +18,8 @@ class StatisticsFileMaker {
 		$name = str_replace("!","neg-",$name);
 		// change '#' to 'hash-'
 		$name = str_replace("#","hash-",$name);
+		// change '+' to '-plus'
+		$name = str_replace("+","-plus",$name);
 		// prepare filename
 		$filename = strtolower($prefix.'-'.$name);
 		if (! $sfs->exists( $this->config->system['statsdir'] ))
