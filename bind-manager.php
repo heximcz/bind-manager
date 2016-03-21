@@ -1,5 +1,6 @@
 <?php
 use Symfony\Component\Console\Application;
+use Symfony\Component\Filesystem\Exception\IOException;
 use App\Config\GetYAMLConfig;
 use App\Console\CliBind;
 
@@ -10,5 +11,7 @@ try {
 	$application->add(new CliBind( new GetYAMLConfig() ));
 	$application->run();
 } catch (Exception $e) {
-	echo 'Caught exception: ',  $e->getMessage(), "\n";
+	echo 'Caught exception: ',  $e->getMessage(), PHP_EOL;
+} catch (IOException $e) {
+	echo 'Caught exception: ',  $e->getMessage(), PHP_EOL;
 }
