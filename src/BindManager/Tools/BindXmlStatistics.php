@@ -1,13 +1,12 @@
 <?php
 namespace Src\BindManager;
 
-use Symfony\Component\Filesystem\Filesystem;
 use App\Config\GetYAMLConfig;
 use SimpleXMLElement;
 
-class BindXmlStatistics {
+class BindXmlStatistics extends StatisticsFileMaker {
 
-	private $config;
+	protected $config;
 
 	public function __construct(GetYAMLConfig $config) {
 		$this->config = $config;
@@ -139,23 +138,4 @@ class BindXmlStatistics {
 		}
 	}
 
-	/**
-	 * Create a file with statistic value
-	 * @param string $prefix - file prefix
-	 * @param string $name - filename
-	 * @param string $value
-	 */
-	private function saveStatsToFile($prefix,$name,$value) {
-		$sfs = new Filesystem();
-		// change '!' to 'neg-'
-		$name = str_replace("!","neg-",$name);
-		// change '#' to 'hash-'
-		$name = str_replace("#","hash-",$name);
-		// prepare filename
-		$filename = strtolower($prefix.'-'.$name);
-		if (! $sfs->exists( $this->config->system['statsdir'] ))
-			$sfs->mkdir( $this->config->system['statsdir'] );
-			$sfs->dumpFile( $this->config->system['statsdir'] . DIRECTORY_SEPARATOR . $filename, $value );
-	}
-	
 }
