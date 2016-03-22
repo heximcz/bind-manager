@@ -51,7 +51,7 @@ statistics-channels {
 ```
 
 cp /opt/bind-manager/zabbix/bind-resolver.conf /etc/zabbix/zabbix_agentd.d/
-**Modify your real path to the statistics**
+#Modify your real path to the statistics in /etc/zabbix/zabbix_agentd.d/bind-resolver.conf
 /etc/init.d/zabbix-agent restart
 
 ```
