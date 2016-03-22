@@ -57,14 +57,14 @@ cp /opt/bind-manager/zabbix/bind-resolver.conf /etc/zabbix/zabbix_agentd.d/
 * Import the template to your Zabbix monitoring.
 * Configure section 'system' in config.yml 
 
-'''
+```
 ...
     # bind statistics url - howto: https://ftp.isc.org/isc/bind9/9.10.4b2/doc/arm/Bv9ARM.ch06.html#statschannels
     statsurl: "http://127.0.0.1:8053"
     # directory for store files with a statistics values
     statsdir: "/var/cache/bind/named-stats/"
 ...
-'''
+```
 
 ## Example Usage
 
