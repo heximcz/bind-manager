@@ -7,7 +7,7 @@ use App\Console\CliBind;
 require_once dirname(__FILE__).DIRECTORY_SEPARATOR.'vendor/autoload.php';
 
 try {
-	$application = new Application("Bind Manager","0.1.1");
+	$application = new Application("Bind Manager","0.1.2-dev");
 	$application->add(new CliBind( new GetYAMLConfig() ));
 	$application->run();
 } catch (Exception $e) {
