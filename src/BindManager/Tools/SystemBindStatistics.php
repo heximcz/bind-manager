@@ -1,8 +1,8 @@
 <?php
 /**
- * Parse BIND statistics XML
+ * Parse BIND statistics XML and Json
  *
- * @version 0.1.1-dev
+ * @version 0.1.2
  *
  */
 
