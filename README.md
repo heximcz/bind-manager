@@ -49,8 +49,11 @@ statistics-channels {
 * Configure Zabbix Agent
 
 ```
+
 cp /opt/bind-manager/zabbix/bind-resolver.conf /etc/zabbix/zabbix_agentd.d/
+**Modify your real path to the statistics**
 /etc/init.d/zabbix-agent restart
+
 ```
 
 * Download the Bind 9 template for Zabbix 3.x: [Zabbix templates](https://github.com/heximcz/bind-manager/tree/master/zabbix)
