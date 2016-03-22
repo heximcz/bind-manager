@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>3.0</version>
-    <date>2016-03-20T14:58:26Z</date>
+    <date>2016-03-22T10:03:07Z</date>
     <groups>
         <group>
             <name>Templates</name>
@@ -9,9 +9,11 @@
     </groups>
     <templates>
         <template>
-            <template>Template Bind Statistics</template>
-            <name>Template Bind Statistics</name>
-            <description>Template for bind resolver statistics for https://github.com/heximcz/bind-manager</description>
+            <template>Template Bind 9 Statistics - X2</template>
+            <name>Template Bind 9 Statistics - X2</name>
+            <description>Template for BIND 9 resolver statistics for tool: https://github.com/heximcz/bind-manager&#13;
+&#13;
+This template support xml v2 of the BIND 9 statistics</description>
             <groups>
                 <group>
                     <name>Templates</name>
@@ -5225,7 +5227,7 @@
                             <sort_triggers>0</sort_triggers>
                             <resource>
                                 <name>BIND - Incoming Requests</name>
-                                <host>Template Bind Statistics</host>
+                                <host>Template Bind 9 Statistics - X2</host>
                             </resource>
                             <max_columns>3</max_columns>
                             <application/>
@@ -5247,7 +5249,7 @@
                             <sort_triggers>0</sort_triggers>
                             <resource>
                                 <name>BIND - Incoming Queries</name>
-                                <host>Template Bind Statistics</host>
+                                <host>Template Bind 9 Statistics - X2</host>
                             </resource>
                             <max_columns>3</max_columns>
                             <application/>
@@ -5269,7 +5271,7 @@
                             <sort_triggers>0</sort_triggers>
                             <resource>
                                 <name>BIND - Outgoing Queries from View _default</name>
-                                <host>Template Bind Statistics</host>
+                                <host>Template Bind 9 Statistics - X2</host>
                             </resource>
                             <max_columns>3</max_columns>
                             <application/>
@@ -5291,7 +5293,7 @@
                             <sort_triggers>0</sort_triggers>
                             <resource>
                                 <name>BIND - Cache DB RRsets for View _default</name>
-                                <host>Template Bind Statistics</host>
+                                <host>Template Bind 9 Statistics - X2</host>
                             </resource>
                             <max_columns>3</max_columns>
                             <application/>
@@ -5313,7 +5315,7 @@
                             <sort_triggers>0</sort_triggers>
                             <resource>
                                 <name>BIND - ! Cache DB RRsets for View _default</name>
-                                <host>Template Bind Statistics</host>
+                                <host>Template Bind 9 Statistics - X2</host>
                             </resource>
                             <max_columns>3</max_columns>
                             <application/>
@@ -5335,7 +5337,7 @@
                             <sort_triggers>0</sort_triggers>
                             <resource>
                                 <name>BIND - Server Statistics</name>
-                                <host>Template Bind Statistics</host>
+                                <host>Template Bind 9 Statistics - X2</host>
                             </resource>
                             <max_columns>3</max_columns>
                             <application/>
@@ -5357,7 +5359,7 @@
                             <sort_triggers>0</sort_triggers>
                             <resource>
                                 <name>BIND - Socket I/O Statistics</name>
-                                <host>Template Bind Statistics</host>
+                                <host>Template Bind 9 Statistics - X2</host>
                             </resource>
                             <max_columns>3</max_columns>
                             <application/>
@@ -5394,7 +5396,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[default-cache-rrsets-neg-a]</key>
                     </item>
                 </graph_item>
@@ -5406,7 +5408,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[default-cache-rrsets-neg-a6]</key>
                     </item>
                 </graph_item>
@@ -5418,7 +5420,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[default-cache-rrsets-neg-aaaa]</key>
                     </item>
                 </graph_item>
@@ -5430,7 +5432,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[default-cache-rrsets-neg-cname]</key>
                     </item>
                 </graph_item>
@@ -5442,7 +5444,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[default-cache-rrsets-neg-dlv]</key>
                     </item>
                 </graph_item>
@@ -5454,7 +5456,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[default-cache-rrsets-neg-dnskey]</key>
                     </item>
                 </graph_item>
@@ -5466,7 +5468,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[default-cache-rrsets-neg-ds]</key>
                     </item>
                 </graph_item>
@@ -5478,7 +5480,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[default-cache-rrsets-neg-mx]</key>
                     </item>
                 </graph_item>
@@ -5490,7 +5492,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[default-cache-rrsets-neg-naptr]</key>
                     </item>
                 </graph_item>
@@ -5502,7 +5504,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[default-cache-rrsets-neg-ns]</key>
                     </item>
                 </graph_item>
@@ -5514,7 +5516,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[default-cache-rrsets-neg-ptr]</key>
                     </item>
                 </graph_item>
@@ -5526,7 +5528,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[default-cache-rrsets-neg-soa]</key>
                     </item>
                 </graph_item>
@@ -5538,7 +5540,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[default-cache-rrsets-neg-spf]</key>
                     </item>
                 </graph_item>
@@ -5550,7 +5552,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[default-cache-rrsets-neg-srv]</key>
                     </item>
                 </graph_item>
@@ -5562,7 +5564,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[default-cache-rrsets-neg-txt]</key>
                     </item>
                 </graph_item>
@@ -5594,7 +5596,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[default-cache-rrsets-a]</key>
                     </item>
                 </graph_item>
@@ -5606,7 +5608,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[default-cache-rrsets-a6]</key>
                     </item>
                 </graph_item>
@@ -5618,7 +5620,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[default-cache-rrsets-aaaa]</key>
                     </item>
                 </graph_item>
@@ -5630,7 +5632,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[default-cache-rrsets-cname]</key>
                     </item>
                 </graph_item>
@@ -5642,7 +5644,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[default-cache-rrsets-dnskey]</key>
                     </item>
                 </graph_item>
@@ -5654,7 +5656,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[default-cache-rrsets-ds]</key>
                     </item>
                 </graph_item>
@@ -5666,7 +5668,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[default-cache-rrsets-mx]</key>
                     </item>
                 </graph_item>
@@ -5678,7 +5680,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[default-cache-rrsets-naptr]</key>
                     </item>
                 </graph_item>
@@ -5690,7 +5692,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[default-cache-rrsets-ns]</key>
                     </item>
                 </graph_item>
@@ -5702,7 +5704,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[default-cache-rrsets-nsec]</key>
                     </item>
                 </graph_item>
@@ -5714,7 +5716,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[default-cache-rrsets-nxdomain]</key>
                     </item>
                 </graph_item>
@@ -5726,7 +5728,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[default-cache-rrsets-ptr]</key>
                     </item>
                 </graph_item>
@@ -5738,7 +5740,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[default-cache-rrsets-rrsig]</key>
                     </item>
                 </graph_item>
@@ -5750,7 +5752,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[default-cache-rrsets-soa]</key>
                     </item>
                 </graph_item>
@@ -5762,7 +5764,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[default-cache-rrsets-spf]</key>
                     </item>
                 </graph_item>
@@ -5774,7 +5776,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[default-cache-rrsets-srv]</key>
                     </item>
                 </graph_item>
@@ -5786,7 +5788,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[default-cache-rrsets-txt]</key>
                     </item>
                 </graph_item>
@@ -5818,7 +5820,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[queries-in-a]</key>
                     </item>
                 </graph_item>
@@ -5830,7 +5832,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[queries-in-a6]</key>
                     </item>
                 </graph_item>
@@ -5842,7 +5844,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[queries-in-aaaa]</key>
                     </item>
                 </graph_item>
@@ -5854,7 +5856,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[queries-in-any]</key>
                     </item>
                 </graph_item>
@@ -5866,7 +5868,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[queries-in-cname]</key>
                     </item>
                 </graph_item>
@@ -5878,7 +5880,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[queries-in-dlv]</key>
                     </item>
                 </graph_item>
@@ -5890,7 +5892,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[queries-in-dnskey]</key>
                     </item>
                 </graph_item>
@@ -5902,7 +5904,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[queries-in-ds]</key>
                     </item>
                 </graph_item>
@@ -5914,7 +5916,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[queries-in-mx]</key>
                     </item>
                 </graph_item>
@@ -5926,7 +5928,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[queries-in-naptr]</key>
                     </item>
                 </graph_item>
@@ -5938,7 +5940,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[queries-in-ns]</key>
                     </item>
                 </graph_item>
@@ -5950,7 +5952,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[queries-in-ptr]</key>
                     </item>
                 </graph_item>
@@ -5962,7 +5964,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[queries-in-soa]</key>
                     </item>
                 </graph_item>
@@ -5974,7 +5976,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[queries-in-spf]</key>
                     </item>
                 </graph_item>
@@ -5986,7 +5988,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[queries-in-srv]</key>
                     </item>
                 </graph_item>
@@ -5998,7 +6000,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[queries-in-txt]</key>
                     </item>
                 </graph_item>
@@ -6030,7 +6032,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[requests-query]</key>
                     </item>
                 </graph_item>
@@ -6062,7 +6064,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[default-queries-out-a]</key>
                     </item>
                 </graph_item>
@@ -6074,7 +6076,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[default-queries-out-a6]</key>
                     </item>
                 </graph_item>
@@ -6086,7 +6088,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[default-queries-out-aaaa]</key>
                     </item>
                 </graph_item>
@@ -6098,7 +6100,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[default-queries-out-any]</key>
                     </item>
                 </graph_item>
@@ -6110,7 +6112,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[default-queries-out-cname]</key>
                     </item>
                 </graph_item>
@@ -6122,7 +6124,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[default-queries-out-dlv]</key>
                     </item>
                 </graph_item>
@@ -6134,7 +6136,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[default-queries-out-dnskey]</key>
                     </item>
                 </graph_item>
@@ -6146,7 +6148,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[default-queries-out-ds]</key>
                     </item>
                 </graph_item>
@@ -6158,7 +6160,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[default-queries-out-mx]</key>
                     </item>
                 </graph_item>
@@ -6170,7 +6172,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[default-queries-out-naptr]</key>
                     </item>
                 </graph_item>
@@ -6182,7 +6184,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[default-queries-out-ns]</key>
                     </item>
                 </graph_item>
@@ -6194,7 +6196,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[default-queries-out-ptr]</key>
                     </item>
                 </graph_item>
@@ -6206,7 +6208,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[default-queries-out-soa]</key>
                     </item>
                 </graph_item>
@@ -6218,7 +6220,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[default-queries-out-spf]</key>
                     </item>
                 </graph_item>
@@ -6230,7 +6232,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[default-queries-out-srv]</key>
                     </item>
                 </graph_item>
@@ -6242,7 +6244,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[default-queries-out-txt]</key>
                     </item>
                 </graph_item>
@@ -6274,7 +6276,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[nsstat-authqryrej]</key>
                     </item>
                 </graph_item>
@@ -6286,7 +6288,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[nsstat-qryauthans]</key>
                     </item>
                 </graph_item>
@@ -6298,7 +6300,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[nsstat-qrydropped]</key>
                     </item>
                 </graph_item>
@@ -6310,7 +6312,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[nsstat-qryduplicate]</key>
                     </item>
                 </graph_item>
@@ -6322,7 +6324,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[nsstat-qryfailure]</key>
                     </item>
                 </graph_item>
@@ -6334,7 +6336,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[nsstat-qryformerr]</key>
                     </item>
                 </graph_item>
@@ -6346,7 +6348,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[nsstat-qrynoauthans]</key>
                     </item>
                 </graph_item>
@@ -6358,7 +6360,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[nsstat-qrynxdomain]</key>
                     </item>
                 </graph_item>
@@ -6370,7 +6372,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[nsstat-qrynxrrset]</key>
                     </item>
                 </graph_item>
@@ -6382,7 +6384,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[nsstat-qryrecursion]</key>
                     </item>
                 </graph_item>
@@ -6394,7 +6396,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[nsstat-qryreferral]</key>
                     </item>
                 </graph_item>
@@ -6406,7 +6408,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[nsstat-qryservfail]</key>
                     </item>
                 </graph_item>
@@ -6418,7 +6420,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[nsstat-qrysuccess]</key>
                     </item>
                 </graph_item>
@@ -6430,7 +6432,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[nsstat-ratedropped]</key>
                     </item>
                 </graph_item>
@@ -6442,7 +6444,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[nsstat-rateslipped]</key>
                     </item>
                 </graph_item>
@@ -6454,7 +6456,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[nsstat-recqryrej]</key>
                     </item>
                 </graph_item>
@@ -6466,7 +6468,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[nsstat-reqbadednsver]</key>
                     </item>
                 </graph_item>
@@ -6478,7 +6480,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[nsstat-reqbadsig]</key>
                     </item>
                 </graph_item>
@@ -6490,7 +6492,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[nsstat-reqedns0]</key>
                     </item>
                 </graph_item>
@@ -6502,7 +6504,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[nsstat-reqsig0]</key>
                     </item>
                 </graph_item>
@@ -6514,7 +6516,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[nsstat-reqtcp]</key>
                     </item>
                 </graph_item>
@@ -6526,7 +6528,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[nsstat-reqtsig]</key>
                     </item>
                 </graph_item>
@@ -6538,7 +6540,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[nsstat-requestv4]</key>
                     </item>
                 </graph_item>
@@ -6550,7 +6552,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[nsstat-requestv6]</key>
                     </item>
                 </graph_item>
@@ -6562,7 +6564,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[nsstat-respedns0]</key>
                     </item>
                 </graph_item>
@@ -6574,7 +6576,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[nsstat-response]</key>
                     </item>
                 </graph_item>
@@ -6586,7 +6588,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[nsstat-respsig0]</key>
                     </item>
                 </graph_item>
@@ -6598,7 +6600,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[nsstat-resptsig]</key>
                     </item>
                 </graph_item>
@@ -6610,7 +6612,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[nsstat-rpzrewrites]</key>
                     </item>
                 </graph_item>
@@ -6622,7 +6624,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[nsstat-truncatedresp]</key>
                     </item>
                 </graph_item>
@@ -6634,7 +6636,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[nsstat-updatebadprereq]</key>
                     </item>
                 </graph_item>
@@ -6646,7 +6648,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[nsstat-updatedone]</key>
                     </item>
                 </graph_item>
@@ -6658,7 +6660,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[nsstat-updatefail]</key>
                     </item>
                 </graph_item>
@@ -6670,7 +6672,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[nsstat-updatefwdfail]</key>
                     </item>
                 </graph_item>
@@ -6682,7 +6684,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[nsstat-updaterej]</key>
                     </item>
                 </graph_item>
@@ -6694,7 +6696,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[nsstat-updatereqfwd]</key>
                     </item>
                 </graph_item>
@@ -6706,7 +6708,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[nsstat-updaterespfwd]</key>
                     </item>
                 </graph_item>
@@ -6718,7 +6720,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[nsstat-xfrrej]</key>
                     </item>
                 </graph_item>
@@ -6730,7 +6732,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[nsstat-xfrreqdone]</key>
                     </item>
                 </graph_item>
@@ -6762,7 +6764,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[sockstat-tcp4close]</key>
                     </item>
                 </graph_item>
@@ -6774,7 +6776,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[sockstat-tcp4conn]</key>
                     </item>
                 </graph_item>
@@ -6786,7 +6788,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[sockstat-tcp4open]</key>
                     </item>
                 </graph_item>
@@ -6798,7 +6800,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[sockstat-tcp6close]</key>
                     </item>
                 </graph_item>
@@ -6810,7 +6812,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[sockstat-tcp6conn]</key>
                     </item>
                 </graph_item>
@@ -6822,7 +6824,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[sockstat-tcp6open]</key>
                     </item>
                 </graph_item>
@@ -6834,7 +6836,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[sockstat-udp4bindfail]</key>
                     </item>
                 </graph_item>
@@ -6846,7 +6848,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[sockstat-udp4close]</key>
                     </item>
                 </graph_item>
@@ -6858,7 +6860,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[sockstat-udp4conn]</key>
                     </item>
                 </graph_item>
@@ -6870,7 +6872,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[sockstat-udp4open]</key>
                     </item>
                 </graph_item>
@@ -6882,7 +6884,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[sockstat-udp4recverr]</key>
                     </item>
                 </graph_item>
@@ -6894,7 +6896,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[sockstat-udp6bindfail]</key>
                     </item>
                 </graph_item>
@@ -6906,7 +6908,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[sockstat-udp6close]</key>
                     </item>
                 </graph_item>
@@ -6918,7 +6920,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[sockstat-udp6conn]</key>
                     </item>
                 </graph_item>
@@ -6930,7 +6932,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[sockstat-udp6open]</key>
                     </item>
                 </graph_item>
@@ -6942,7 +6944,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template Bind Statistics</host>
+                        <host>Template Bind 9 Statistics - X2</host>
                         <key>bind.stats[sockstat-udp6recverr]</key>
                     </item>
                 </graph_item>
