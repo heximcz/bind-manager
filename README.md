@@ -53,13 +53,22 @@ cp /opt/bind-manager/zabbix/bind-resolver.conf /etc/zabbix/zabbix_agentd.d/
 /etc/init.d/zabbix-agent restart
 ```
 
-* Download the Bind XML template from github. [bind template](https://github.com/heximcz/bind-manager/blob/master/zabbix/zabbix_bind_template.xml)
+* Download the Bind XML template from github. [bind template](https://github.com/heximcz/bind-manager/tree/master/zabbix)
+
+```
+
+Template-Bind-9-Statistics-JX3.xml - Support for XML v3 an JSON
+Template-Bind-9-Statistics-X2.xml - Support for XML v2
+
+```
+
 * Import the template to your Zabbix monitoring.
 * Configure section 'system' in config.yml 
 
 ```
 ...
     # bind statistics url - howto: https://ftp.isc.org/isc/bind9/9.10.4b2/doc/arm/Bv9ARM.ch06.html#statschannels
+    # (allowed path after port number is: /xml/v2, /xml/v3, /json, default is no path )
     statsurl: "http://127.0.0.1:8053"
     # directory for store files with a statistics values
     statsdir: "/var/cache/bind/named-stats/"
