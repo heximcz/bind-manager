@@ -53,7 +53,7 @@ cp /opt/bind-manager/zabbix/bind-resolver.conf /etc/zabbix/zabbix_agentd.d/
 /etc/init.d/zabbix-agent restart
 ```
 
-* Download the Bind XML template from github. [bind template](https://github.com/heximcz/bind-manager/tree/master/zabbix)
+* Download the Bind 9 template for Zabbix 3.x: [Zabbix templates](https://github.com/heximcz/bind-manager/tree/master/zabbix)
 
 ```
 
@@ -63,7 +63,7 @@ Template-Bind-9-Statistics-X2.xml - Support for XML v2
 ```
 
 * Import the template to your Zabbix monitoring.
-* Configure section 'system' in config.yml 
+* Configure section 'system' in the config.yml 
 
 ```
 ...
