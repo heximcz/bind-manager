@@ -5,9 +5,7 @@
 
 Periodical update of the root zone for Bind DNS resolver.
 
-**NEW:** Support for Bind 9 Statistics and Zabbix monitoring.
-
-**NEW:** Support for Bind 9.10.x JSON Statistics.
+**NEWS:** Update vendor files
 
 ## Prerequisites
 
