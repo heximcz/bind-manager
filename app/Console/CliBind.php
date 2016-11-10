@@ -13,44 +13,44 @@ use App\Config\GetYAMLConfig;
 class CliBind extends Command
 {
 
-	protected $config;
+    protected $config;
 
-	public function __construct(GetYAMLConfig $config)
-	{
-		parent::__construct();
-		$this->config = $config;
-	}
+    public function __construct(GetYAMLConfig $config)
+    {
+        parent::__construct();
+        $this->config = $config;
+    }
 
-	protected function configure()
-	{
-		$this
-		->setName('bind:sys')
-		->setDescription('Update db.root, checks and reload actions.')
-		->addArgument ( 'action', InputArgument::OPTIONAL, 'update | restart | statistics', 'update' )
-		;
-	}
+    protected function configure()
+    {
+        $this
+            ->setName('bind:sys')
+            ->setDescription('Update db.root, checks and reload actions.')
+            ->addArgument('action', InputArgument::OPTIONAL, 'update | restart | statistics', 'update');
+    }
 
-	protected function execute(InputInterface $input, OutputInterface $output) {
+    protected function execute(InputInterface $input, OutputInterface $output)
+    {
 
-		$logger = new OutputLogger($output);
-		$logger->log("Start bind manager.");
-		$action = $input->getArgument( 'action' );
-		$bind = new BindManager($this->config, $logger);
-		switch ($action) {
-			case "restart":
-				$bind->restartBind();
-				break;
-			case "update":
-				$bind->updateBind();
-				break;
-			case "statistics":
-				$bind->createBindStatistics();
-				break;
-			default:
-				$command = $this->getApplication()->get('help');
-				$command->run(new ArrayInput(['command_name' => $this->getName()]), $output);
-				break;
-		}
-	}
+        $logger = new OutputLogger($output);
+        $logger->log("Start bind manager.");
+        $action = $input->getArgument('action');
+        $bind = new BindManager($this->config, $logger);
+        switch ($action) {
+            case "restart":
+                $bind->restartBind();
+                break;
+            case "update":
+                $bind->updateBind();
+                break;
+            case "statistics":
+                $bind->createBindStatistics();
+                break;
+            default:
+                $command = $this->getApplication()->get('help');
+                $command->run(new ArrayInput(['command_name' => $this->getName()]), $output);
+                break;
+        }
+    }
 
 }

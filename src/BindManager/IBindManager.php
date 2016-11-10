@@ -2,10 +2,13 @@
 
 namespace Src\BindManager;
 
-interface IBindManager {
+interface IBindManager
+{
 
-	public function updateBind();
-	public function restartBind();
-	public function createBindStatistics();
-	
+    public function updateBind();
+
+    public function restartBind();
+
+    public function createBindStatistics();
+
 }
