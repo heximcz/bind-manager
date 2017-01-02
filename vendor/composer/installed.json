@@ -50,17 +50,17 @@
     },
     {
         "name": "symfony/debug",
-        "version": "v3.1.6",
-        "version_normalized": "3.1.6.0",
+        "version": "v3.2.1",
+        "version_normalized": "3.2.1.0",
         "source": {
             "type": "git",
             "url": "https://github.com/symfony/debug.git",
-            "reference": "e2b3f74a67fc928adc3c1b9027f73e1bc01190a8"
+            "reference": "9f923e68d524a3095c5a2ae5fc7220c7cbc12231"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/symfony/debug/zipball/e2b3f74a67fc928adc3c1b9027f73e1bc01190a8",
-            "reference": "e2b3f74a67fc928adc3c1b9027f73e1bc01190a8",
+            "url": "https://api.github.com/repos/symfony/debug/zipball/9f923e68d524a3095c5a2ae5fc7220c7cbc12231",
+            "reference": "9f923e68d524a3095c5a2ae5fc7220c7cbc12231",
             "shasum": ""
         },
         "require": {
@@ -74,11 +74,11 @@
             "symfony/class-loader": "~2.8|~3.0",
             "symfony/http-kernel": "~2.8|~3.0"
         },
-        "time": "2016-09-06 11:02:40",
+        "time": "2016-11-16 22:18:16",
         "type": "library",
         "extra": {
             "branch-alias": {
-                "dev-master": "3.1-dev"
+                "dev-master": "3.2-dev"
             }
         },
         "installation-source": "dist",
@@ -109,17 +109,17 @@
     },
     {
         "name": "symfony/polyfill-mbstring",
-        "version": "v1.2.0",
-        "version_normalized": "1.2.0.0",
+        "version": "v1.3.0",
+        "version_normalized": "1.3.0.0",
         "source": {
             "type": "git",
             "url": "https://github.com/symfony/polyfill-mbstring.git",
-            "reference": "dff51f72b0706335131b00a7f49606168c582594"
+            "reference": "e79d363049d1c2128f133a2667e4f4190904f7f4"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/dff51f72b0706335131b00a7f49606168c582594",
-            "reference": "dff51f72b0706335131b00a7f49606168c582594",
+            "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/e79d363049d1c2128f133a2667e4f4190904f7f4",
+            "reference": "e79d363049d1c2128f133a2667e4f4190904f7f4",
             "shasum": ""
         },
         "require": {
@@ -128,11 +128,11 @@
         "suggest": {
             "ext-mbstring": "For best performance"
         },
-        "time": "2016-05-18 14:26:46",
+        "time": "2016-11-14 01:06:16",
         "type": "library",
         "extra": {
             "branch-alias": {
-                "dev-master": "1.2-dev"
+                "dev-master": "1.3-dev"
             }
         },
         "installation-source": "dist",
@@ -170,17 +170,17 @@
     },
     {
         "name": "symfony/console",
-        "version": "v3.1.6",
-        "version_normalized": "3.1.6.0",
+        "version": "v3.2.1",
+        "version_normalized": "3.2.1.0",
         "source": {
             "type": "git",
             "url": "https://github.com/symfony/console.git",
-            "reference": "c99da1119ae61e15de0e4829196b9fba6f73d065"
+            "reference": "d12aa9ca20f4db83ec58410978dab6afcb9d6aaa"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/symfony/console/zipball/c99da1119ae61e15de0e4829196b9fba6f73d065",
-            "reference": "c99da1119ae61e15de0e4829196b9fba6f73d065",
+            "url": "https://api.github.com/repos/symfony/console/zipball/d12aa9ca20f4db83ec58410978dab6afcb9d6aaa",
+            "reference": "d12aa9ca20f4db83ec58410978dab6afcb9d6aaa",
             "shasum": ""
         },
         "require": {
@@ -191,18 +191,20 @@
         "require-dev": {
             "psr/log": "~1.0",
             "symfony/event-dispatcher": "~2.8|~3.0",
+            "symfony/filesystem": "~2.8|~3.0",
             "symfony/process": "~2.8|~3.0"
         },
         "suggest": {
             "psr/log": "For using the console logger",
             "symfony/event-dispatcher": "",
+            "symfony/filesystem": "",
             "symfony/process": ""
         },
-        "time": "2016-10-06 01:44:51",
+        "time": "2016-12-11 14:34:22",
         "type": "library",
         "extra": {
             "branch-alias": {
-                "dev-master": "3.1-dev"
+                "dev-master": "3.2-dev"
             }
         },
         "installation-source": "dist",
@@ -233,27 +235,33 @@
     },
     {
         "name": "symfony/yaml",
-        "version": "v3.1.6",
-        "version_normalized": "3.1.6.0",
+        "version": "v3.2.1",
+        "version_normalized": "3.2.1.0",
         "source": {
             "type": "git",
             "url": "https://github.com/symfony/yaml.git",
-            "reference": "7ff51b06c6c3d5cc6686df69004a42c69df09e27"
+            "reference": "a7095af4b97a0955f85c8989106c249fa649011f"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/symfony/yaml/zipball/7ff51b06c6c3d5cc6686df69004a42c69df09e27",
-            "reference": "7ff51b06c6c3d5cc6686df69004a42c69df09e27",
+            "url": "https://api.github.com/repos/symfony/yaml/zipball/a7095af4b97a0955f85c8989106c249fa649011f",
+            "reference": "a7095af4b97a0955f85c8989106c249fa649011f",
             "shasum": ""
         },
         "require": {
             "php": ">=5.5.9"
         },
-        "time": "2016-10-24 18:41:13",
+        "require-dev": {
+            "symfony/console": "~2.8|~3.0"
+        },
+        "suggest": {
+            "symfony/console": "For validating YAML files using the lint command"
+        },
+        "time": "2016-12-10 10:07:06",
         "type": "library",
         "extra": {
             "branch-alias": {
-                "dev-master": "3.1-dev"
+                "dev-master": "3.2-dev"
             }
         },
         "installation-source": "dist",
@@ -284,17 +292,17 @@
     },
     {
         "name": "phpmailer/phpmailer",
-        "version": "v5.2.16",
-        "version_normalized": "5.2.16.0",
+        "version": "v5.2.21",
+        "version_normalized": "5.2.21.0",
         "source": {
             "type": "git",
             "url": "https://github.com/PHPMailer/PHPMailer.git",
-            "reference": "1d85f9ef3ecfc42bbc4f3c70d5e37ca9a65f629a"
+            "reference": "1d51856b76c06fc687fcd9180efa7a0bed0d761e"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/PHPMailer/PHPMailer/zipball/1d85f9ef3ecfc42bbc4f3c70d5e37ca9a65f629a",
-            "reference": "1d85f9ef3ecfc42bbc4f3c70d5e37ca9a65f629a",
+            "url": "https://api.github.com/repos/PHPMailer/PHPMailer/zipball/1d51856b76c06fc687fcd9180efa7a0bed0d761e",
+            "reference": "1d51856b76c06fc687fcd9180efa7a0bed0d761e",
             "shasum": ""
         },
         "require": {
@@ -307,7 +315,7 @@
         "suggest": {
             "league/oauth2-google": "Needed for Google XOAUTH2 authentication"
         },
-        "time": "2016-06-06 09:09:37",
+        "time": "2016-12-28 15:35:48",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -346,27 +354,27 @@
     },
     {
         "name": "symfony/filesystem",
-        "version": "v3.1.6",
-        "version_normalized": "3.1.6.0",
+        "version": "v3.2.1",
+        "version_normalized": "3.2.1.0",
         "source": {
             "type": "git",
             "url": "https://github.com/symfony/filesystem.git",
-            "reference": "0565b61bf098cb4dc09f4f103f033138ae4f42c6"
+            "reference": "8d4cf7561a5b17e5eb7a02b80d0b8f014a3796d4"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/symfony/filesystem/zipball/0565b61bf098cb4dc09f4f103f033138ae4f42c6",
-            "reference": "0565b61bf098cb4dc09f4f103f033138ae4f42c6",
+            "url": "https://api.github.com/repos/symfony/filesystem/zipball/8d4cf7561a5b17e5eb7a02b80d0b8f014a3796d4",
+            "reference": "8d4cf7561a5b17e5eb7a02b80d0b8f014a3796d4",
             "shasum": ""
         },
         "require": {
             "php": ">=5.5.9"
         },
-        "time": "2016-10-18 04:30:12",
+        "time": "2016-11-24 00:46:43",
         "type": "library",
         "extra": {
             "branch-alias": {
-                "dev-master": "3.1-dev"
+                "dev-master": "3.2-dev"
             }
         },
         "installation-source": "dist",
