@@ -11,15 +11,29 @@
 
 namespace Symfony\Component\Console\Tests\Helper;
 
-use Symfony\Component\Console\Helper\ProgressBar;
+use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Helper\Helper;
+use Symfony\Component\Console\Helper\ProgressBar;
 use Symfony\Component\Console\Output\StreamOutput;
 
 /**
  * @group time-sensitive
  */
-class ProgressBarTest extends \PHPUnit_Framework_TestCase
+class ProgressBarTest extends TestCase
 {
+    private $colSize;
+
+    protected function setUp()
+    {
+        $this->colSize = getenv('COLUMNS');
+        putenv('COLUMNS=120');
+    }
+
+    protected function tearDown()
+    {
+        putenv($this->colSize ? 'COLUMNS='.$this->colSize : 'COLUMNS');
+    }
+
     public function testMultipleStart()
     {
         $bar = new ProgressBar($output = $this->getOutputStream());
@@ -353,35 +367,52 @@ class ProgressBarTest extends \PHPUnit_Framework_TestCase
 
     public function testRedrawFrequency()
     {
-        $bar = $this->getMock('Symfony\Component\Console\Helper\ProgressBar', array('display'), array($this->getOutputStream(), 6));
-        $bar->expects($this->exactly(4))->method('display');
-
+        $bar = new ProgressBar($output = $this->getOutputStream(), 6);
         $bar->setRedrawFrequency(2);
         $bar->start();
         $bar->setProgress(1);
         $bar->advance(2);
         $bar->advance(2);
         $bar->advance(1);
+
+        rewind($output->getStream());
+        $this->assertEquals(
+            ' 0/6 [>---------------------------]   0%'.
+            $this->generateOutput(' 3/6 [==============>-------------]  50%').
+            $this->generateOutput(' 5/6 [=======================>----]  83%').
+            $this->generateOutput(' 6/6 [============================] 100%'),
+            stream_get_contents($output->getStream())
+        );
     }
 
     public function testRedrawFrequencyIsAtLeastOneIfZeroGiven()
     {
-        $bar = $this->getMock('Symfony\Component\Console\Helper\ProgressBar', array('display'), array($this->getOutputStream()));
-
-        $bar->expects($this->exactly(2))->method('display');
+        $bar = new ProgressBar($output = $this->getOutputStream());
         $bar->setRedrawFrequency(0);
         $bar->start();
         $bar->advance();
+
+        rewind($output->getStream());
+        $this->assertEquals(
+            '    0 [>---------------------------]'.
+            $this->generateOutput('    1 [->--------------------------]'),
+            stream_get_contents($output->getStream())
+        );
     }
 
     public function testRedrawFrequencyIsAtLeastOneIfSmallerOneGiven()
     {
-        $bar = $this->getMock('Symfony\Component\Console\Helper\ProgressBar', array('display'), array($this->getOutputStream()));
-
-        $bar->expects($this->exactly(2))->method('display');
+        $bar = new ProgressBar($output = $this->getOutputStream());
         $bar->setRedrawFrequency(0.9);
         $bar->start();
         $bar->advance();
+
+        rewind($output->getStream());
+        $this->assertEquals(
+            '    0 [>---------------------------]'.
+            $this->generateOutput('    1 [->--------------------------]'),
+            stream_get_contents($output->getStream())
+        );
     }
 
     public function testMultiByteSupport()
@@ -734,12 +765,12 @@ class ProgressBarTest extends \PHPUnit_Framework_TestCase
      */
     public function provideFormat()
     {
-        return array(
-            array('normal'),
-            array('verbose'),
-            array('very_verbose'),
-            array('debug'),
-        );
+        return [
+            ['normal'],
+            ['verbose'],
+            ['very_verbose'],
+            ['debug'],
+        ];
     }
 
     protected function getOutputStream($decorated = true, $verbosity = StreamOutput::VERBOSITY_NORMAL)
@@ -752,5 +783,23 @@ class ProgressBarTest extends \PHPUnit_Framework_TestCase
         $count = substr_count($expected, "\n");
 
         return "\x0D\x1B[2K".($count ? str_repeat("\x1B[1A\x1B[2K", $count) : '').$expected;
+    }
+
+    public function testBarWidthWithMultilineFormat()
+    {
+        putenv('COLUMNS=10');
+
+        $bar = new ProgressBar($output = $this->getOutputStream());
+        $bar->setFormat("%bar%\n0123456789");
+
+        // before starting
+        $bar->setBarWidth(5);
+        $this->assertEquals(5, $bar->getBarWidth());
+
+        // after starting
+        $bar->start();
+        rewind($output->getStream());
+        $this->assertEquals(5, $bar->getBarWidth(), stream_get_contents($output->getStream()));
+        putenv('COLUMNS=120');
     }
 }

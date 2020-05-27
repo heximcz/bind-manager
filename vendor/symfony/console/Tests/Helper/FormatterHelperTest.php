@@ -11,9 +11,10 @@
 
 namespace Symfony\Component\Console\Tests\Helper;
 
+use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Helper\FormatterHelper;
 
-class FormatterHelperTest extends \PHPUnit_Framework_TestCase
+class FormatterHelperTest extends TestCase
 {
     public function testFormatSection()
     {
@@ -39,7 +40,7 @@ class FormatterHelperTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(
             '<error> Some text to display </error>'."\n".
             '<error> foo bar              </error>',
-            $formatter->formatBlock(array('Some text to display', 'foo bar'), 'error'),
+            $formatter->formatBlock(['Some text to display', 'foo bar'], 'error'),
             '::formatBlock() formats a message in a block'
         );
 

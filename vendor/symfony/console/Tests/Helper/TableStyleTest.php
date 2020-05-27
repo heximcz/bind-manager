@@ -11,16 +11,15 @@
 
 namespace Symfony\Component\Console\Tests\Helper;
 
+use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Helper\TableStyle;
 
-class TableStyleTest extends \PHPUnit_Framework_TestCase
+class TableStyleTest extends TestCase
 {
-    /**
-     * @expectedException        \InvalidArgumentException
-     * @expectedExceptionMessage Invalid padding type. Expected one of (STR_PAD_LEFT, STR_PAD_RIGHT, STR_PAD_BOTH).
-     */
     public function testSetPadTypeWithInvalidType()
     {
+        $this->expectException('InvalidArgumentException');
+        $this->expectExceptionMessage('Invalid padding type. Expected one of (STR_PAD_LEFT, STR_PAD_RIGHT, STR_PAD_BOTH).');
         $style = new TableStyle();
         $style->setPadType('TEST');
     }

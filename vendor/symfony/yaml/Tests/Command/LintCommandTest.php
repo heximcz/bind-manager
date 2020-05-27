@@ -11,17 +11,18 @@
 
 namespace Symfony\Component\Yaml\Tests\Command;
 
-use Symfony\Component\Yaml\Command\LintCommand;
+use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Tester\CommandTester;
+use Symfony\Component\Yaml\Command\LintCommand;
 
 /**
  * Tests the YamlLintCommand.
  *
  * @author Robin Chalas <robin.chalas@gmail.com>
  */
-class LintCommandTest extends \PHPUnit_Framework_TestCase
+class LintCommandTest extends TestCase
 {
     private $files;
 
@@ -30,7 +31,7 @@ class LintCommandTest extends \PHPUnit_Framework_TestCase
         $tester = $this->createCommandTester();
         $filename = $this->createFile('foo: bar');
 
-        $ret = $tester->execute(array('filename' => $filename), array('verbosity' => OutputInterface::VERBOSITY_VERBOSE, 'decorated' => false));
+        $ret = $tester->execute(['filename' => $filename], ['verbosity' => OutputInterface::VERBOSITY_VERBOSE, 'decorated' => false]);
 
         $this->assertEquals(0, $ret, 'Returns 0 in case of success');
         $this->assertRegExp('/^\/\/ OK in /', trim($tester->getDisplay()));
@@ -44,22 +45,47 @@ bar';
         $tester = $this->createCommandTester();
         $filename = $this->createFile($incorrectContent);
 
-        $ret = $tester->execute(array('filename' => $filename), array('decorated' => false));
+        $ret = $tester->execute(['filename' => $filename], ['decorated' => false]);
 
         $this->assertEquals(1, $ret, 'Returns 1 in case of error');
-        $this->assertContains('Unable to parse at line 3 (near "bar").', trim($tester->getDisplay()));
+        $this->assertStringContainsString('Unable to parse at line 3 (near "bar").', trim($tester->getDisplay()));
     }
 
-    /**
-     * @expectedException \RuntimeException
-     */
+    public function testConstantAsKey()
+    {
+        $yaml = <<<YAML
+!php/const 'Symfony\Component\Yaml\Tests\Command\Foo::TEST': bar
+YAML;
+        $ret = $this->createCommandTester()->execute(['filename' => $this->createFile($yaml)], ['verbosity' => OutputInterface::VERBOSITY_VERBOSE, 'decorated' => false]);
+        $this->assertSame(0, $ret, 'lint:yaml exits with code 0 in case of success');
+    }
+
+    public function testCustomTags()
+    {
+        $yaml = <<<YAML
+foo: !my_tag {foo: bar}
+YAML;
+        $ret = $this->createCommandTester()->execute(['filename' => $this->createFile($yaml), '--parse-tags' => true], ['verbosity' => OutputInterface::VERBOSITY_VERBOSE, 'decorated' => false]);
+        $this->assertSame(0, $ret, 'lint:yaml exits with code 0 in case of success');
+    }
+
+    public function testCustomTagsError()
+    {
+        $yaml = <<<YAML
+foo: !my_tag {foo: bar}
+YAML;
+        $ret = $this->createCommandTester()->execute(['filename' => $this->createFile($yaml)], ['verbosity' => OutputInterface::VERBOSITY_VERBOSE, 'decorated' => false]);
+        $this->assertSame(1, $ret, 'lint:yaml exits with code 1 in case of error');
+    }
+
     public function testLintFileNotReadable()
     {
+        $this->expectException('RuntimeException');
         $tester = $this->createCommandTester();
         $filename = $this->createFile('');
         unlink($filename);
 
-        $ret = $tester->execute(array('filename' => $filename), array('decorated' => false));
+        $tester->execute(['filename' => $filename], ['decorated' => false]);
     }
 
     /**
@@ -89,7 +115,7 @@ bar';
 
     protected function setUp()
     {
-        $this->files = array();
+        $this->files = [];
         @mkdir(sys_get_temp_dir().'/framework-yml-lint-test');
     }
 
@@ -103,4 +129,9 @@ bar';
 
         rmdir(sys_get_temp_dir().'/framework-yml-lint-test');
     }
+}
+
+class Foo
+{
+    const TEST = 'foo';
 }
