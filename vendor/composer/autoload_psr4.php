@@ -16,6 +16,7 @@ return array(
     'Src\\Checks\\' => array($baseDir . '/src/Checks'),
     'Src\\BindManager\\' => array($baseDir . '/src/BindManager', $baseDir . '/src/BindManager/Tools'),
     'Psr\\Log\\' => array($vendorDir . '/psr/log/Psr/Log'),
+    'PHPMailer\\PHPMailer\\' => array($vendorDir . '/phpmailer/phpmailer/src'),
     'App\\Console\\' => array($baseDir . '/app/Console'),
     'App\\Config\\' => array($baseDir . '/app/Config'),
 );
